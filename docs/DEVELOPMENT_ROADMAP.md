@@ -82,8 +82,17 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
   - Add the initial Astro page and project setup documentation
   - Add the standard development, build, and preview scripts
   - Add ignore rules for dependencies, generated output, and local environment files
-  - Install dependencies, generate the package lockfile, and run the development/build smoke checks
+  - Install dependencies through the Vercel deployment environment and verify the production build
+  - Generate and commit the npm lockfile so transitive dependency resolution is reproducible
+  - A local development-server test is not mandatory; use a Vercel Preview deployment for browser smoke checks
 - 1.2 Integrate React
+  - Add the official `@astrojs/react` integration with an exact compatible version
+  - Add exact React, React DOM, and React TypeScript type dependencies
+  - Configure Astro to register the React integration
+  - Configure TypeScript for the automatic React JSX runtime
+  - Add one small React island that proves client-side hydration and state updates
+  - Render the island from an Astro page using an explicit hydration directive
+  - Verify that the page renders server-side and the interactive control works in a Vercel Preview deployment
 - 1.3 Configure strict TypeScript
 - 1.4 Integrate Tailwind CSS
 - 1.5 Configure ESLint and Prettier
@@ -92,7 +101,7 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
 - 1.8 Configure package scripts and environment handling
 - 1.9 Configure Vercel deployment
 
-Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed with a lockfile, and the development/build smoke checks to pass.
+Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in a Vercel Preview deployment.
 
 ### Phase 2 — Application Architecture
 - 2.1 Establish application layouts
