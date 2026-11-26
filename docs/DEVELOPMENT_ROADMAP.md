@@ -32,6 +32,11 @@ Working branch: `main`
 ### Phase 0 — Engineering Preparation
 - 0.1 Inspect repository, default branch, and initial state
 - 0.2 Define application architecture and technical boundaries
+  - Document Astro-first rendering and React island boundaries
+  - Define content, presentation, simulation runtime, physics domain, and visualization layers
+  - Define locale route conventions and content architecture
+  - Define simulation state ownership, timing, and rendering boundaries
+  - Record architecture decisions in `docs/DECISIONS.md`
 - 0.3 Define source and documentation structure
 - 0.4 Define coding conventions and quality gates
 - 0.5 Define testing and validation strategy
