@@ -11,7 +11,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Overall status: IN PROGRESS
 - Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of Vercel Preview)
 - Latest phase artifact commit: `55d1099bc63579354c78ccf2f5599f4c012d716b`
-- Next planned work: Deploy and verify the React island in Vercel Preview; then continue Phase 1.3 — Configure strict TypeScript
+- Next planned work: Verify the React island in the Vercel deployment; then continue Phase 1.3 — Configure strict TypeScript
 
 ## Status definitions
 
@@ -33,7 +33,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 0.5 | Define testing and validation strategy | VERIFIED | Mathematical, runtime, measurement/graph, UI, E2E, scientific review, reproducibility, and release validation documented. |
 | 0.6 | Record development workflow and decision log | VERIFIED | Workflow, validation, commit, history, defect, decision, and handoff procedures documented and reviewed. |
 | 1.1 | Initialize Astro | IMPLEMENTED | Vercel dependency installation and production build PASS; committed package lockfile pending. Local dev-server testing is waived in favor of Vercel Preview per the agreed workflow. |
-| 1.2 | Integrate React | IMPLEMENTED | Official integration, exact React dependencies, strict JSX configuration, and a hydrated React island added; Vercel Preview verification pending. |
+| 1.2 | Integrate React | IMPLEMENTED | Official integration, exact React dependencies, strict JSX configuration, and a hydrated React island added; Vercel deployment verification pending. |
 | 1.3–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
@@ -472,7 +472,7 @@ Integrate React as an Astro island without converting the public site into a cli
 - Official Astro React integration installation/configuration pattern reviewed against the current Astro documentation.
 - Package versions checked against current package registry information on 2026-11-26.
 - Repository file read-back and branch checks: pending final post-implementation inspection.
-- Vercel Preview build: NOT RUN yet.
+- Vercel deployment build: NOT RUN yet.
 - Browser interaction test: NOT RUN yet; must confirm the counter increments after hydration.
 - Phase status remains IMPLEMENTED until the Vercel build and browser interaction are verified.
 
