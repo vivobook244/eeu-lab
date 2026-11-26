@@ -76,6 +76,13 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
 
 ### Phase 1 — Project Initialization
 - 1.1 Initialize Astro
+  - Pin a supported Node.js runtime and document the local runtime requirement
+  - Initialize the Astro project with a reproducible direct framework version
+  - Add the Astro configuration and strict TypeScript baseline
+  - Add the initial Astro page and project setup documentation
+  - Add the standard development, build, and preview scripts
+  - Add ignore rules for dependencies, generated output, and local environment files
+  - Install dependencies, generate the package lockfile, and run the development/build smoke checks
 - 1.2 Integrate React
 - 1.3 Configure strict TypeScript
 - 1.4 Integrate Tailwind CSS
@@ -85,7 +92,7 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
 - 1.8 Configure package scripts and environment handling
 - 1.9 Configure Vercel deployment
 
-Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified.
+Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed with a lockfile, and the development/build smoke checks to pass.
 
 ### Phase 2 — Application Architecture
 - 2.1 Establish application layouts
