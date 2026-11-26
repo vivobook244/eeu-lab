@@ -38,11 +38,18 @@ Working branch: `main`
   - Define simulation state ownership, timing, and rendering boundaries
   - Record architecture decisions in `docs/DECISIONS.md`
 - 0.3 Define source and documentation structure
+  - Define Astro pages, layouts, content, and locale directory placement
+  - Separate Astro components from React interactive components
+  - Define Physics Domain, Simulation Runtime, and Visualization source boundaries
+  - Define public/imported asset placement and naming conventions
+  - Define unit, integration, and end-to-end test locations
+  - Define documentation locations and import conventions
+  - Record the exact structure in `docs/architecture/PROJECT_STRUCTURE.md`
 - 0.4 Define coding conventions and quality gates
 - 0.5 Define testing and validation strategy
 - 0.6 Record development workflow and decision log
 
-Exit criteria: engineering decisions and workflow are documented; repository baseline is known.
+Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures are explicit and consistent with the architecture.
 
 ### Phase 1 — Project Initialization
 - 1.1 Initialize Astro
