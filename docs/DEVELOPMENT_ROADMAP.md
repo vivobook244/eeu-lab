@@ -1,0 +1,189 @@
+# EEU LAB — Development Roadmap
+
+Version: 1.0
+Last updated: 2026-11-26
+Repository: https://github.com/vivobook244/eeu-lab
+Working branch: `main`
+
+## Development rules
+
+1. Use exactly one working branch: `main`. Never create additional branches unless the project owner explicitly changes this rule.
+2. Before every implementation session, inspect the repository state, current branch, latest commit, and existing changes.
+3. Record every phase and subphase in `docs/DEVELOPMENT_PROGRESS.md`. Preserve history; append dated entries instead of silently overwriting previous records.
+4. A task is not complete merely because code exists. Record implementation, validation, test results, known limitations, and related commit SHA.
+5. Keep commits focused and descriptive. Do not commit unvalidated work as completed.
+6. Do not introduce a backend, database, authentication, monorepo, or Docker unless a documented requirement justifies it.
+7. Physics calculations must be independent of rendering and covered by automated tests.
+
+## Technology baseline
+
+- Astro
+- React
+- TypeScript (strict)
+- Tailwind CSS
+- Canvas and SVG for 2D visualization
+- Three.js only where 3D materially improves learning
+- Vitest for unit/integration tests
+- Playwright for end-to-end tests
+- Vercel for deployment
+
+## Phase roadmap
+
+### Phase 0 — Engineering Preparation
+- 0.1 Inspect repository, default branch, and initial state
+- 0.2 Define application architecture and technical boundaries
+- 0.3 Define source and documentation structure
+- 0.4 Define coding conventions and quality gates
+- 0.5 Define testing and validation strategy
+- 0.6 Record development workflow and decision log
+
+Exit criteria: engineering decisions and workflow are documented; repository baseline is known.
+
+### Phase 1 — Project Initialization
+- 1.1 Initialize Astro
+- 1.2 Integrate React
+- 1.3 Configure strict TypeScript
+- 1.4 Integrate Tailwind CSS
+- 1.5 Configure ESLint and Prettier
+- 1.6 Configure Vitest
+- 1.7 Configure Playwright
+- 1.8 Configure package scripts and environment handling
+- 1.9 Configure Vercel deployment
+
+Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified.
+
+### Phase 2 — Application Architecture
+- 2.1 Establish application layouts
+- 2.2 Establish route and page architecture
+- 2.3 Establish reusable component boundaries
+- 2.4 Establish content data model
+- 2.5 Establish Indonesian/English localization structure
+- 2.6 Establish SEO metadata strategy
+- 2.7 Establish error and not-found handling
+- 2.8 Establish client state strategy
+
+Exit criteria: application structure supports content pages and interactive simulations without premature backend dependencies.
+
+### Phase 3 — UI/UX Foundation
+- 3.1 Define brand tokens, colors, and typography
+- 3.2 Build responsive layout primitives
+- 3.3 Build navigation and site shell
+- 3.4 Build homepage
+- 3.5 Build laboratory directory
+- 3.6 Build topic detail page structure
+- 3.7 Build reusable UI components
+- 3.8 Validate mobile and desktop layouts
+
+Exit criteria: core public-facing pages are navigable, responsive, and consistent.
+
+### Phase 4 — Physics Domain Core
+- 4.1 Define physical constants and SI units
+- 4.2 Define typed quantities and parameter contracts
+- 4.3 Implement mathematical utilities
+- 4.4 Define solver interfaces and model boundaries
+- 4.5 Define deterministic simulation time-step behavior
+- 4.6 Define measurement data contracts
+- 4.7 Define graph data contracts
+- 4.8 Add unit tests for domain calculations
+
+Exit criteria: physics calculations are deterministic, independently testable, and separated from UI/rendering.
+
+### Phase 5 — Simulation Runtime and Rendering
+- 5.1 Implement simulation lifecycle (start, pause, reset)
+- 5.2 Implement fixed-step update loop where appropriate
+- 5.3 Implement 2D coordinate and scale mapping
+- 5.4 Implement Canvas/SVG rendering foundation
+- 5.5 Implement object and vector rendering primitives
+- 5.6 Synchronize runtime state with rendering
+- 5.7 Handle resize, visibility, and cleanup
+- 5.8 Validate runtime behavior and performance
+
+Exit criteria: a test model can be simulated and rendered reliably without coupling solver logic to rendering.
+
+### Phase 6 — Measurement and Graphing
+- 6.1 Implement live measurement presentation
+- 6.2 Implement chart integration and shared data contracts
+- 6.3 Implement time-series data collection
+- 6.4 Implement graph axes, units, and labels
+- 6.5 Implement graph interaction and synchronization
+- 6.6 Validate numerical consistency between solver, measurements, and graphs
+
+Exit criteria: displayed values and graphs are derived from the same simulation state and use correct units.
+
+### Phase 7 — First Simulation: Linear Motion
+- 7.1 Specify GLB scientific model and assumptions
+- 7.2 Implement and test GLB solver
+- 7.3 Specify GLBB scientific model and assumptions
+- 7.4 Implement and test GLBB solver
+- 7.5 Build parameter controls
+- 7.6 Integrate visualization and runtime
+- 7.7 Integrate measurements and graphs
+- 7.8 Add formulas and concept explanations
+- 7.9 Add guided experiment challenges
+- 7.10 Validate scientific behavior and user experience
+
+Exit criteria: GLB/GLBB experiments are usable, numerically validated, responsive, and covered by automated tests.
+
+### Phase 8 — Learning Content and Localization
+- 8.1 Define reusable lesson content schema
+- 8.2 Author Indonesian lesson content
+- 8.3 Author English lesson content
+- 8.4 Render formulas and symbols accessibly
+- 8.5 Add trustworthy scientific references
+- 8.6 Connect lessons, experiments, and navigation
+- 8.7 Validate language parity and metadata
+
+Exit criteria: first simulation has complete, reviewed learning content in both languages.
+
+### Phase 9 — Quality Assurance
+- 9.1 Review scientific correctness and model limitations
+- 9.2 Run unit and integration tests
+- 9.3 Run end-to-end tests
+- 9.4 Test responsive behavior
+- 9.5 Test browser compatibility
+- 9.6 Review accessibility
+- 9.7 Review performance and Core Web Vitals
+- 9.8 Review SEO and crawlability
+- 9.9 Resolve release-blocking defects
+
+Exit criteria: release criteria pass and known limitations are documented.
+
+### Phase 10 — Production Deployment
+- 10.1 Prepare production configuration
+- 10.2 Configure Vercel project and environment
+- 10.3 Configure domain when available
+- 10.4 Add privacy and legal pages
+- 10.5 Add privacy-conscious analytics/event measurement
+- 10.6 Deploy and run production smoke tests
+- 10.7 Document release and rollback procedure
+
+Exit criteria: public deployment is verified and production checks pass.
+
+### Phase 11 — Expansion and Optimization
+- 11.1 Use the validated pattern for Newton's Laws
+- 11.2 Expand remaining Mechanics topics
+- 11.3 Evaluate and prioritize other physics laboratories
+- 11.4 Improve content based on user behavior and learning feedback
+- 11.5 Consider monetization only after product quality, traffic, and policy readiness
+
+Exit criteria: each expansion is justified by user value and follows the established scientific and engineering quality gates.
+
+## Delivery and completion policy
+
+Each subphase must have:
+- A clear objective and bounded scope
+- Files/modules affected
+- Acceptance criteria
+- Validation and test evidence
+- Known limitations or blockers
+- A dated progress entry
+- The commit SHA that contains the work
+
+Status definitions:
+- NOT STARTED
+- IN PROGRESS
+- BLOCKED
+- IMPLEMENTED
+- VERIFIED
+
+Use VERIFIED only when the acceptance criteria and relevant tests have passed. A phase is complete only when all required subphases meet their exit criteria.
