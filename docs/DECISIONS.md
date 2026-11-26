@@ -99,6 +99,18 @@ This document records durable project decisions. Add dated entries for changes; 
 - Rule: Record gates that were not run and why; never claim unexecuted validation passed.
 - Rationale: Make completion evidence-based and prevent regressions.
 
+### DEC-018 — Scientific validation is separate from software test success
+- Date: 2026-11-26
+- Decision: Every published physics model requires automated solver/reference tests and a separate scientific/educational review.
+- Rule: A passing software test suite alone does not certify equations, assumptions, units, graphs, or explanations as scientifically correct.
+- Rationale: Prevent plausible-looking but physically misleading experiments.
+
+### DEC-019 — Deterministic validation of simulation time and data consistency
+- Date: 2026-11-26
+- Decision: Runtime tests use controlled clocks/schedulers, and measurements/graphs must be verified against the same authoritative simulation samples.
+- Rule: Do not rely on arbitrary sleeps or render-frame timing for numerical assertions; numerical tolerances require documented rationale.
+- Rationale: Make simulation behavior reproducible and protect consistency across solver, measurements, and graphs.
+
 ## Change history
 
 ### 2026-11-26
