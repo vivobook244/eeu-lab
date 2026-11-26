@@ -10,7 +10,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Current subphase: 1.1 — Initialize Astro
 - Overall status: IN PROGRESS
 - Phase 1.1 status: IMPLEMENTED (runtime installation and build verification pending)
-- Latest phase artifact commit: `750753f43c5f5b8e850e6a254976cc333bc3387c`
+- Latest phase artifact commit: `71bce67b805aeb8a1b711e79bafe18748f9e38a9`
 - Next planned work: Complete Phase 1.1 local installation/build verification, then Phase 1.2 — Integrate React
 
 ## Status definitions
@@ -239,7 +239,7 @@ Create the initial Astro application scaffold on the existing `main` branch, est
 - Set the minimum Node.js engine to `22.23.4` and pinned that runtime in `.nvmrc`.
 - Added `astro.config.mjs` with the minimal Astro configuration.
 - Added `tsconfig.json` extending Astro's strict TypeScript baseline and configured the `@/*` source alias.
-- Added the initial responsive Astro landing page at `src/pages/index.astro`.
+- Added the initial responsive Astro landing page at `src/pages/index.astro`, with Indonesian as the temporary root-page language; full `/id/` and `/en/` locale routing remains Phase 2 work.
 - Added development, start, build, and preview scripts.
 - Added `.gitignore` rules for dependencies, generated Astro output, environment files, and local tooling.
 - Added a root README with prerequisites and local setup commands.
@@ -265,6 +265,7 @@ Create the initial Astro application scaffold on the existing `main` branch, est
 - `1c1aeb11cdf496dafe7fec2177e93d5718e96ea8` — `feat: add initial Astro landing page`
 - `b054e0d760ddbbf033fb82eb3685a97514762c4f` — `docs: add project setup instructions`
 - `750753f43c5f5b8e850e6a254976cc333bc3387c` — `docs: detail Astro initialization tasks`
+- `71bce67b805aeb8a1b711e79bafe18748f9e38a9` — `feat: localize Astro placeholder to Indonesian`
 - Progress-log commit is recorded after this entry is committed.
 
 **Validation**
