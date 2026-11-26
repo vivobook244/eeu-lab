@@ -1,4 +1,6 @@
 ---
+import ReactIslandDemo from "../components/react/simulation/ReactIslandDemo";
+
 const title = "EEU LAB";
 const description =
   "Explore. Experiment. Understand. An interactive physics laboratory.";
@@ -22,6 +24,7 @@ const description =
         Tempat untuk menjelajahi fisika melalui eksperimen interaktif.
       </p>
       <p class="status">Laboratorium sedang dipersiapkan.</p>
+      <ReactIslandDemo client:load />
     </main>
   </body>
 </html>
@@ -91,5 +94,74 @@ const description =
     padding: 0.55rem 0.9rem;
     color: #52627a;
     font-size: 0.85rem;
+  }
+
+  :global(.react-island) {
+    display: grid;
+    width: min(100%, 34rem);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    border: 1px solid #d8e0eb;
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    background: #ffffff;
+    text-align: left;
+  }
+
+  :global(.react-island__eyebrow) {
+    margin: 0 0 0.5rem;
+    color: #52627a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  :global(.react-island h2) {
+    font-size: 1.15rem;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+  }
+
+  :global(.react-island__description) {
+    margin: 0.5rem 0 0;
+    color: #52627a;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  :global(.react-island__controls) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  :global(.react-island__count) {
+    margin: 0;
+    color: #52627a;
+    font-size: 0.9rem;
+  }
+
+  :global(.react-island__count strong) {
+    color: #172033;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :global(.react-island__button) {
+    border: 0;
+    border-radius: 0.75rem;
+    padding: 0.7rem 1rem;
+    background: #172033;
+    color: #ffffff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  :global(.react-island__button:focus-visible) {
+    outline: 3px solid #93c5fd;
+    outline-offset: 3px;
   }
 </style>
