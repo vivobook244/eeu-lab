@@ -84,7 +84,7 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
   - Add ignore rules for dependencies, generated output, and local environment files
   - Install dependencies through the Vercel deployment environment and verify the production build
   - Generate and commit the npm lockfile so transitive dependency resolution is reproducible
-  - A local development-server test is not mandatory; use a Vercel Preview deployment for browser smoke checks
+  - A local development-server test is not mandatory; use the Vercel deployment for browser smoke checks
 - 1.2 Integrate React
   - Add the official `@astrojs/react` integration with an exact compatible version
   - Add exact React, React DOM, and React TypeScript type dependencies
@@ -92,7 +92,7 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
   - Configure TypeScript for the automatic React JSX runtime
   - Add one small React island that proves client-side hydration and state updates
   - Render the island from an Astro page using an explicit hydration directive
-  - Verify that the page renders server-side and the interactive control works in a Vercel Preview deployment
+  - Verify that the page renders server-side and the interactive control works in the Vercel deployment
 - 1.3 Configure strict TypeScript
 - 1.4 Integrate Tailwind CSS
 - 1.5 Configure ESLint and Prettier
