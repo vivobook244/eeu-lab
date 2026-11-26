@@ -9,9 +9,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Current phase: Phase 1 — Project Initialization
 - Current subphase: 1.1 — Initialize Astro
 - Overall status: IN PROGRESS
-- Phase 1.1 status: IMPLEMENTED (runtime installation and build verification pending)
+- Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; local dev-server smoke test and committed lockfile pending)
 - Latest phase artifact commit: `71bce67b805aeb8a1b711e79bafe18748f9e38a9`
-- Next planned work: Complete Phase 1.1 local installation/build verification, then Phase 1.2 — Integrate React
+- Next planned work: Complete Phase 1.1 lockfile and development-server smoke checks, then Phase 1.2 — Integrate React
 
 ## Status definitions
 
@@ -32,7 +32,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 
 | 0.5 | Define testing and validation strategy | VERIFIED | Mathematical, runtime, measurement/graph, UI, E2E, scientific review, reproducibility, and release validation documented. |
 | 0.6 | Record development workflow and decision log | VERIFIED | Workflow, validation, commit, history, defect, decision, and handoff procedures documented and reviewed. |
-| 1.1 | Initialize Astro | IMPLEMENTED | Astro scaffold, strict TypeScript baseline, initial page, Node runtime pin, scripts, and setup documentation committed; npm install/build not yet run. |
+| 1.1 | Initialize Astro | IMPLEMENTED | Vercel dependency installation and production build PASS; local dev-server smoke test and committed package lockfile remain pending. |
 | 1.2–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
@@ -273,13 +273,15 @@ Create the initial Astro application scaffold on the existing `main` branch, est
 - Confirmed package scripts and the pinned Astro version are present in the committed manifest.
 - Confirmed the repository branch list still contains only `main`.
 - Static configuration and documentation review: PASS.
-- `npm install`: NOT RUN — no local shell/repository checkout is available through the connected GitHub workflow in this session.
-- `npm run dev`: NOT RUN — dependencies have not been installed in an executable local environment.
-- `npm run build`: NOT RUN — dependencies have not been installed in an executable local environment.
-- Package lockfile: NOT GENERATED — must be created by the package manager during dependency installation; do not fabricate it.
+- Vercel dependency installation: PASS — deployment log reports `added 188 packages`.
+- Vercel production build: PASS — `astro build` completed and generated `/index.html`; one static page built successfully.
+- Vercel deployment: PASS — deployment completed and build cache uploaded.
+- Vercel development-server smoke test: NOT RUN — this deployment executes the production build, not `astro dev`.
+- Committed package lockfile: NOT VERIFIED — no `package-lock.json` is present in the inspected repository state; do not infer that Vercel's ephemeral install generated a committed lockfile.
+- Vercel warnings: non-blocking npm `cache-dir` configuration warning and Node engine range warning; build did not fail.
 
 **Limitations / deferred work**
-- This subphase is IMPLEMENTED, not VERIFIED. A local dependency installation, lockfile generation, development-server smoke test, and production build are still required.
+- This subphase remains IMPLEMENTED, not VERIFIED. The production build is now verified on Vercel, but a committed package lockfile and development-server smoke test are still required.
 - React integration remains Phase 1.2.
 - Tailwind, ESLint/Prettier, Vitest, Playwright, and Vercel configuration remain their dedicated Phase 1 subphases.
 - The initial landing page is only a technical scaffold, not the finished product UI.
@@ -393,3 +395,31 @@ Define repeatable validation for mathematical models, simulation runtime, measur
 
 **Next**
 Phase 0.6 — Record development workflow and decision log.
+
+
+### 2026-11-26 — Phase 1.1 Vercel production build verified
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.1 — Initialize Astro  
+**Status:** IMPLEMENTED (partial verification)
+
+**Evidence supplied**
+- User-provided Vercel deployment log for commit `f0f1f2525b16c4819451ea026ad91a7196c944fc` on branch `main`.
+- Dependency installation completed successfully (`added 188 packages`).
+- `npm run build` executed `astro build` successfully.
+- Astro generated the static route `/index.html`; one page was built.
+- Vercel reported deployment completed and build cache uploaded.
+
+**Validation**
+- Production dependency installation: PASS (Vercel).
+- Production build: PASS (Vercel).
+- Deployment: PASS (Vercel).
+- Development server smoke test: NOT RUN.
+- Committed `package-lock.json`: NOT VERIFIED; the deployment log does not establish that a lockfile is committed to GitHub.
+- Non-blocking warnings remain for npm `cache-dir` configuration and the open-ended Node engine range.
+
+**Status decision**
+Keep Phase 1.1 as IMPLEMENTED rather than VERIFIED until a lockfile is committed and the development-server smoke test passes. The Vercel production build result is recorded as verified evidence, not treated as proof of the remaining acceptance criteria.
+
+**Next**
+Generate and commit the package lockfile, run the development server smoke test, then complete Phase 1.1 verification.
