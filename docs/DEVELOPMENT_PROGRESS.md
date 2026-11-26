@@ -9,7 +9,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Current phase: Phase 0 — Engineering Preparation
 - Current subphase: 0.2 — Define application architecture and technical boundaries
 - Overall status: IN PROGRESS
-- Latest recorded commit: `fdcec5e0cc1024607b2969f64c04ad6d28492e54`
+- Latest recorded commit: `da4c0e0d65daa642cfc4c61301c4b785d60bb721`
 
 ## Status definitions
 
@@ -61,6 +61,8 @@ Initialize the first commit on the default branch `main`. Do not create any addi
 
 **Commit**
 - `fdcec5e0cc1024607b2969f64c04ad6d28492e54` — `docs: add EEU LAB development roadmap`
+- `fcd239be6ad2a1c92d28d3b8b253b03628eadbb6` — `docs: add development progress tracking`
+- `da4c0e0d65daa642cfc4c61301c4b785d60bb721` — `docs: record initial engineering decisions`
 
 **Validation**
 - Repository metadata confirmed.
