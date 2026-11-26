@@ -6,10 +6,11 @@ This file is append-only in practice: add new dated entries and preserve earlier
 
 - Last updated: 2026-11-26
 - Active branch: `main`
-- Current phase: Phase 0 — Engineering Preparation
-- Current subphase: 0.6 — Record development workflow and decision log
-- Overall status: IN PROGRESS
-- Latest phase artifact commit: `b2bdcb3c0ca3ae7c81adc1698ceb42561f429d25`
+- Current phase: Phase 0 — Engineering Preparation (complete)
+- Current subphase: 0.6 — Record development workflow and decision log (VERIFIED)
+- Overall status: Phase 0 complete; Phase 1 not started
+- Latest phase artifact commit: `a0cf286cd9ca672141448d6c29873157d7fcea37`
+- Next planned work: Phase 1.1 — Initialize Astro
 
 ## Status definitions
 
@@ -29,7 +30,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 0.4 | Define coding conventions and quality gates | VERIFIED | TypeScript, scientific-computing, error-handling, dependency, documentation, and quality-gate standards documented. |
 
 | 0.5 | Define testing and validation strategy | VERIFIED | Mathematical, runtime, measurement/graph, UI, E2E, scientific review, reproducibility, and release validation documented. |
-| 0.6 | Record development workflow and decision log | IN PROGRESS | Next subphase. |
+| 0.6 | Record development workflow and decision log | VERIFIED | Workflow, validation, commit, history, defect, decision, and handoff procedures documented and reviewed. |
 | 1.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
 ---
@@ -213,6 +214,55 @@ Establish practical coding rules and evidence-based quality gates before applica
 
 **Next**
 Phase 0.5 — Define testing and validation strategy.
+
+### 2026-11-26 — Phase 0.6 development workflow recorded
+
+**Phase:** 0 — Engineering Preparation  
+**Subphase:** 0.6 — Record development workflow and decision log  
+**Status:** VERIFIED
+
+**Objective**  
+Define a repeatable, evidence-based workflow for all future EEU LAB development sessions, from repository inspection through implementation, validation, commit, and handoff.
+
+**Work completed**
+- Reconfirmed repository identity, public visibility, default branch `main`, and the only existing branch `main`.
+- Confirmed the latest commit before this subphase was `00ccd8a24faa197422d1754d0fe6c1cc69780e9e`, the Phase 0.5 verification commit.
+- Documented mandatory preflight inspection of branch, latest commit, working changes, relevant source, roadmap, and existing work.
+- Defined bounded task planning, acceptance criteria, implementation sequence, final diff review, and focused commit conventions.
+- Defined explicit PASS, FAIL, NOT RUN, and NOT APPLICABLE validation reporting.
+- Defined progress-entry requirements and status meanings, including the evidence required before VERIFIED.
+- Documented handling of defects, regressions, failed checks, blockers, architecture changes, decision supersession, dependencies, and security.
+- Defined completion/handoff rules and a concise user-facing progress update format.
+- Expanded the Phase 0.6 roadmap tasks and exit criteria.
+- Did not add a new decision record because the workflow operationalizes existing decisions DEC-001 through DEC-019 rather than introducing a new architectural choice.
+
+**Artifacts created or updated**
+- `docs/development/DEVELOPMENT_WORKFLOW.md` — new mandatory development workflow.
+- `docs/DEVELOPMENT_ROADMAP.md` — detailed Phase 0.6 tasks and strengthened exit criteria.
+- `docs/DEVELOPMENT_PROGRESS.md` — Phase 0 snapshot, status table, and this history entry.
+
+**Commits**
+- `cf5774db217379dcc6c8481ac85f7856d00a1557` — `docs: define development workflow`
+- `a0cf286cd9ca672141448d6c29873157d7fcea37` — `docs: detail development workflow phase tasks`
+- Progress-log commit is recorded after this entry is committed.
+
+**Validation**
+- Re-read the new workflow document from GitHub branch `main`; confirmed all major required sections and Phase 0.6 acceptance criteria are present.
+- Re-read the updated roadmap and confirmed Phase 0.6 task list and exit criteria are present.
+- Compared the workflow against existing coding standards, testing strategy, and decisions; confirmed the rules are consistent.
+- Confirmed branch search returned exactly one branch: `main`.
+- Documentation-only changes: application build and automated tests are NOT APPLICABLE because application source and test configuration have not yet been initialized.
+- No application behavior or scientific model has been implemented or validated in Phase 0.
+
+**Limitations / deferred decisions**
+- The workflow defines quality gates; executable commands, package scripts, CI, and application tests will be established in Phase 1.
+- No local working-tree inspection was available through the GitHub connector; repository branch, commit, and committed file state were inspected through GitHub.
+- Phase 0 establishes engineering plans and documentation only; it does not represent a working application.
+
+**Next**
+Phase 1 — Project Initialization, beginning with 1.1 Initialize Astro.
+
+---
 
 ### 2026-11-26 — Phase 0.5 testing and scientific validation strategy defined
 
