@@ -191,39 +191,11 @@ Runtime rules:
 
 Do not introduce Redux, Zustand, or another global state library at initialization. Start with component state and a small explicit runtime controller. Reassess only if real cross-component complexity emerges.
 
-## 11. Initial source structure
+## 11. Source structure
 
-The detailed directory plan will be finalized in Phase 0.3. The intended boundaries are:
+The canonical source, test, naming, and documentation layout is defined in [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md). That specification supersedes the abbreviated early directory sketch and should be kept consistent with this architecture document.
 
-```text
-src/
-  components/
-    layout/
-    ui/
-    simulation/
-  content/
-    lessons/
-    articles/
-  i18n/
-  layouts/
-  pages/
-  physics/
-    constants/
-    units/
-    math/
-    models/
-  simulation/
-    runtime/
-    measurement/
-    graph/
-  styles/
-  types/
-  utils/
-tests/
-  e2e/
-```
-
-This is a logical boundary map, not permission to create every directory before it is needed. The detailed specification defines exact paths and naming.
+Create directories only when their first real module is introduced; the documented tree is a target organization, not a requirement to commit empty placeholders.
 
 ## 12. Error handling and resilience
 
