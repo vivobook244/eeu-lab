@@ -53,6 +53,13 @@ Working branch: `main`
   - Define dependency, documentation, and commit policies
   - Record the standards in `docs/architecture/CODING_STANDARDS.md`
 - 0.5 Define testing and validation strategy
+  - Define mathematical/model, runtime, measurement, UI, and end-to-end test layers
+  - Define analytical reference cases and invalid/boundary input coverage for GLB/GLBB
+  - Define numerical tolerance and deterministic simulation-clock test policies
+  - Define measurement/graph consistency and visualization validation
+  - Define scientific/educational review and release-blocker criteria
+  - Define browser, responsive, accessibility, and reproducibility expectations
+  - Map quality gates to change types and record the strategy in `docs/testing/TESTING_STRATEGY.md`
 - 0.6 Record development workflow and decision log
 
 Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures, coding standards, and quality gates are explicit and consistent with the architecture.
