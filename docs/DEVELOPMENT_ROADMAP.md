@@ -61,8 +61,18 @@ Working branch: `main`
   - Define browser, responsive, accessibility, and reproducibility expectations
   - Map quality gates to change types and record the strategy in `docs/testing/TESTING_STRATEGY.md`
 - 0.6 Record development workflow and decision log
+  - Define the single-branch policy and mandatory preflight repository inspection
+  - Define task scope, acceptance criteria, and implementation sequence
+  - Define validation evidence and honest PASS/FAIL/NOT RUN reporting
+  - Define focused commit conventions and final-diff review
+  - Define append-only progress history fields and status transitions
+  - Define defect, regression, blocker, and recovery handling
+  - Define architecture/decision change and approval process
+  - Define dependency/security review and completion handoff
+  - Record the workflow in `docs/development/DEVELOPMENT_WORKFLOW.md`
+  - Review consistency with coding standards, testing strategy, and existing decisions
 
-Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures, coding standards, and quality gates are explicit and consistent with the architecture.
+Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures, coding standards, and quality gates are explicit and consistent with the architecture. Phase 0.6 additionally requires a repeatable preflight-to-handoff workflow, explicit validation evidence rules, defect/decision handling, and a reviewed committed workflow document.
 
 ### Phase 1 — Project Initialization
 - 1.1 Initialize Astro
