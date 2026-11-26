@@ -87,6 +87,18 @@ This document records durable project decisions. Add dated entries for changes; 
 - Rule: Preserve the existing top-level roadmap, progress log, and decision log rather than moving them.
 - Rationale: Improve traceability while keeping existing references stable.
 
+### DEC-016 — Strict TypeScript and explicit boundary validation
+- Date: 2026-11-26
+- Decision: Use strict TypeScript, avoid unsafe `any` and unchecked assertions, and validate untrusted values at module boundaries.
+- Rule: Do not weaken compiler settings to bypass defects; keep physics inputs finite, dimensionally meaningful, and within documented model constraints.
+- Rationale: Catch integration errors early and protect the reliability of scientific calculations.
+
+### DEC-017 — Required engineering quality gates
+- Date: 2026-11-26
+- Decision: Code changes must pass relevant formatting, lint, type-check, unit, integration, end-to-end, and production-build checks before being considered complete.
+- Rule: Record gates that were not run and why; never claim unexecuted validation passed.
+- Rationale: Make completion evidence-based and prevent regressions.
+
 ## Change history
 
 ### 2026-11-26
