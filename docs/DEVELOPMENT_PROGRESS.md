@@ -7,11 +7,11 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-26
 - Active branch: `main`
 - Current phase: Phase 1 — Project Initialization
-- Current subphase: 1.1 — Initialize Astro
+- Current subphase: 1.2 — Integrate React
 - Overall status: IN PROGRESS
-- Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; local dev-server smoke test and committed lockfile pending)
-- Latest phase artifact commit: `71bce67b805aeb8a1b711e79bafe18748f9e38a9`
-- Next planned work: Complete Phase 1.1 lockfile and development-server smoke checks, then Phase 1.2 — Integrate React
+- Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of Vercel Preview)
+- Latest phase artifact commit: `55d1099bc63579354c78ccf2f5599f4c012d716b`
+- Next planned work: Deploy and verify the React island in Vercel Preview; then continue Phase 1.3 — Configure strict TypeScript
 
 ## Status definitions
 
@@ -32,8 +32,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 
 | 0.5 | Define testing and validation strategy | VERIFIED | Mathematical, runtime, measurement/graph, UI, E2E, scientific review, reproducibility, and release validation documented. |
 | 0.6 | Record development workflow and decision log | VERIFIED | Workflow, validation, commit, history, defect, decision, and handoff procedures documented and reviewed. |
-| 1.1 | Initialize Astro | IMPLEMENTED | Vercel dependency installation and production build PASS; local dev-server smoke test and committed package lockfile remain pending. |
-| 1.2–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
+| 1.1 | Initialize Astro | IMPLEMENTED | Vercel dependency installation and production build PASS; committed package lockfile pending. Local dev-server testing is waived in favor of Vercel Preview per the agreed workflow. |
+| 1.2 | Integrate React | IMPLEMENTED | Official integration, exact React dependencies, strict JSX configuration, and a hydrated React island added; Vercel Preview verification pending. |
+| 1.3–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
 ---
@@ -423,3 +424,62 @@ Keep Phase 1.1 as IMPLEMENTED rather than VERIFIED until a lockfile is committed
 
 **Next**
 Generate and commit the package lockfile, run the development server smoke test, then complete Phase 1.1 verification.
+
+
+### 2026-11-26 — Phase 1.2 React integration implemented
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.2 — Integrate React  
+**Status:** IMPLEMENTED
+
+**Objective**
+Integrate React as an Astro island without converting the public site into a client-rendered single-page application.
+
+**Preflight inspection**
+- Confirmed repository `vivobook244/eeu-lab`, branch `main`, and latest commit `a4da033e8afd84ff9bc7f8b7e1cc0e8e61b018af` before implementation.
+- Confirmed the only repository branch is `main`.
+- Read the current package manifest, Astro config, TypeScript config, landing page, roadmap, and progress log before editing.
+
+**Work completed**
+- Added the official `@astrojs/react` integration at exact version `7.1.9`.
+- Added exact React and React DOM dependencies at `19.3.1`.
+- Added React type packages at `@types/react 19.3.3` and `@types/react-dom 19.3.0`.
+- Registered `react()` in `astro.config.mjs`.
+- Configured TypeScript's automatic JSX runtime with `jsx: react-jsx` and `jsxImportSource: react`.
+- Added `ReactIslandDemo.tsx`, a small accessible stateful component proving client-side interaction.
+- Rendered the component on the Astro landing page with `client:load`; the rest of the page remains Astro-rendered.
+- Restricted the Node engine range to `>=22.23.4 <23` to avoid the open-ended-major-version warning observed in the previous Vercel build.
+- Updated the roadmap to use Vercel Preview as the agreed browser smoke-test environment; local development-server testing is not mandatory.
+
+**Artifacts created or updated**
+- `package.json`
+- `astro.config.mjs`
+- `tsconfig.json`
+- `src/components/react/simulation/ReactIslandDemo.tsx`
+- `src/pages/index.astro`
+- `docs/DEVELOPMENT_ROADMAP.md`
+- `docs/DEVELOPMENT_PROGRESS.md`
+
+**Commits**
+- `dc96105c2924e6fa61d6f26a1d57049d620b78a4` — `build: add React integration dependencies`
+- `cc9d936744a91ca916ef7542994a4b93af0ef2a4` — `build: configure Astro React integration`
+- `bbe75a2d84d2c132c80209e2530f42fe0c550b7d` — `build: configure React JSX for TypeScript`
+- `53836bd884c87165f38f4ef4b84e1d4c5845010e` — `feat: add React island integration probe`
+- `55d1099bc63579354c78ccf2f5599f4c012d716b` — `feat: render hydrated React island on landing page`
+- `b77d56b75494de8b426161f6bd823056ffd07fc2` — `docs: define React integration acceptance criteria`
+
+**Validation**
+- Official Astro React integration installation/configuration pattern reviewed against the current Astro documentation.
+- Package versions checked against current package registry information on 2026-11-26.
+- Repository file read-back and branch checks: pending final post-implementation inspection.
+- Vercel Preview build: NOT RUN yet.
+- Browser interaction test: NOT RUN yet; must confirm the counter increments after hydration.
+- Phase status remains IMPLEMENTED until the Vercel build and browser interaction are verified.
+
+**Limitations / deferred work**
+- This component is an integration probe, not a production physics simulation or final UI design.
+- No physics logic, global state manager, or client-side SPA routing was introduced.
+- Phase 1.1 remains IMPLEMENTED because the npm lockfile is not yet committed. Local development-server testing is not required under the agreed Vercel-based workflow.
+
+**Next**
+Deploy the current `main` commit to Vercel Preview, verify the page builds and the React counter increments, then mark Phase 1.2 VERIFIED if both checks pass.
