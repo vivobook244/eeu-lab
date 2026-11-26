@@ -223,7 +223,7 @@ tests/
   e2e/
 ```
 
-This is a logical boundary map, not permission to create every directory before it is needed. Phase 0.3 will finalize exact paths and naming.
+This is a logical boundary map, not permission to create every directory before it is needed. The detailed specification defines exact paths and naming.
 
 ## 12. Error handling and resilience
 
