@@ -75,6 +75,18 @@ This document records durable project decisions. Add dated entries for changes; 
 - Decision: Prefer Canvas 2D and SVG; add Three.js only when a documented educational objective materially benefits from 3D.
 - Rationale: Avoid unnecessary rendering complexity and prioritize learning clarity.
 
+### DEC-014 — Explicit source and documentation boundaries
+- Date: 2026-11-26
+- Decision: Keep Astro pages/content, React islands, Physics Domain, Simulation Runtime, and Visualization in distinct source areas as specified in `docs/architecture/PROJECT_STRUCTURE.md`.
+- Rule: Physics remains framework-agnostic; runtime coordinates solvers; visualization consumes snapshots; UI does not duplicate scientific calculations.
+- Rationale: Make the architecture enforceable through repository organization and code review.
+
+### DEC-015 — Tests and technical documentation have dedicated locations
+- Date: 2026-11-26
+- Decision: Use `tests/unit/`, `tests/integration/`, and `tests/e2e/`; keep model specifications and technical guidance under dedicated `docs/` subdirectories.
+- Rule: Preserve the existing top-level roadmap, progress log, and decision log rather than moving them.
+- Rationale: Improve traceability while keeping existing references stable.
+
 ## Change history
 
 ### 2026-11-26
