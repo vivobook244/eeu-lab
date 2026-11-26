@@ -7,9 +7,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-26
 - Active branch: `main`
 - Current phase: Phase 0 — Engineering Preparation
-- Current subphase: 0.5 — Define testing and validation strategy
+- Current subphase: 0.6 — Record development workflow and decision log
 - Overall status: IN PROGRESS
-- Latest phase artifact commit: `78868880f34610f3dc76128c6e43b0a89fdf96ef`
+- Latest phase artifact commit: `b2bdcb3c0ca3ae7c81adc1698ceb42561f429d25`
 
 ## Status definitions
 
@@ -28,8 +28,8 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 0.3 | Define source and documentation structure | VERIFIED | Exact source, test, documentation, naming, and dependency boundaries documented in PROJECT_STRUCTURE.md. |
 | 0.4 | Define coding conventions and quality gates | VERIFIED | TypeScript, scientific-computing, error-handling, dependency, documentation, and quality-gate standards documented. |
 
-| 0.5 | Define testing and validation strategy | IN PROGRESS | Next subphase. |
-| 0.6 | Record development workflow and decision log | NOT STARTED | |
+| 0.5 | Define testing and validation strategy | VERIFIED | Mathematical, runtime, measurement/graph, UI, E2E, scientific review, reproducibility, and release validation documented. |
+| 0.6 | Record development workflow and decision log | IN PROGRESS | Next subphase. |
 | 1.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
 ---
@@ -213,3 +213,59 @@ Establish practical coding rules and evidence-based quality gates before applica
 
 **Next**
 Phase 0.5 — Define testing and validation strategy.
+
+### 2026-11-26 — Phase 0.5 testing and scientific validation strategy defined
+
+**Phase:** 0 — Engineering Preparation  
+**Subphase:** 0.5 — Define testing and validation strategy  
+**Status:** VERIFIED
+
+**Objective**
+Define repeatable validation for mathematical models, simulation runtime, measurement/graph consistency, learner-facing behavior, and scientific explanations.
+
+**Work completed**
+- Defined separate validation layers for mathematical correctness, runtime behavior, measurement/graph consistency, presentation, end-to-end journeys, scientific review, and release readiness.
+- Defined unit, integration, and E2E test organization.
+- Specified GLB analytical reference equations and required test cases for initial conditions, direction, zero velocity, equal time intervals, invalid inputs, and deterministic results.
+- Specified GLBB analytical reference equations and required test cases including zero acceleration reducing to GLB, sign combinations, initial conditions, and analytical comparisons.
+- Defined numerical tolerance policy; tolerances must be justified by numerical behavior and cannot be widened just to silence failures.
+- Defined deterministic runtime testing for start, pause, resume, reset, fixed-step accumulation, visibility changes, large frame gaps, and resource cleanup.
+- Defined measurement and graph consistency checks against the same authoritative simulation samples.
+- Defined visualization, accessibility, localized page, and Playwright learner journeys.
+- Required a separate human scientific/educational review before a model is published.
+- Defined browser, responsive, reproducibility, severity, and release-blocker expectations.
+- Mapped required quality gates to different change types.
+- Corrected the stale abbreviated source-tree section in APPLICATION_ARCHITECTURE.md so it now points to the canonical PROJECT_STRUCTURE.md.
+- Recorded durable decisions as DEC-018 and DEC-019.
+
+**Artifacts created or updated**
+- `docs/testing/TESTING_STRATEGY.md` — new testing and scientific validation strategy.
+- `docs/architecture/APPLICATION_ARCHITECTURE.md` — aligned source-structure reference with the canonical project structure.
+- `docs/DEVELOPMENT_ROADMAP.md` — expanded Phase 0.5 tasks and exit criteria.
+- `docs/DECISIONS.md` — recorded DEC-018 and DEC-019.
+- `docs/DEVELOPMENT_PROGRESS.md` — current status and this history entry.
+
+**Commits**
+- `1d8cd6674e9decebce8bccf1b7bddd8266368a36` — `docs: define testing and scientific validation strategy`
+- `de6ca6e8e6e153c4d7ef1037ec165e321b7d773d` — `docs: align architecture source structure reference`
+- `67397e3bd387d2d59f50d77a7dce9a3a7b8df20a` — `docs: detail testing strategy phase tasks`
+- `b2bdcb3c0ca3ae7c81adc1698ceb42561f429d25` — `docs: record scientific testing decisions`
+
+**Validation**
+- Reviewed the strategy against the documented Physics Domain, Simulation Runtime, Visualization, and UI boundaries.
+- Confirmed both GLB and GLBB include analytical reference equations and meaningful boundary/invalid-input test categories.
+- Confirmed runtime numerical assertions are separated from browser render timing.
+- Confirmed graph and measurement consistency is checked against common authoritative simulation samples.
+- Confirmed scientific review is explicitly separate from software test success.
+- Re-read the architecture, roadmap, and decision records from branch `main`.
+- Documentation-only change: no application source exists yet, so no application tests or production build were applicable.
+- No additional branch was created.
+
+**Limitations / deferred decisions**
+- Exact test libraries, package scripts, CI configuration, browser versions, and coverage thresholds are selected during Phase 1 and Phase 9.
+- Exact numeric tolerances are set per solver when its algorithm and expected error are implemented; no universal tolerance is prescribed here.
+- Scientific review references and reviewers are specified per physics model in its model documentation.
+- No test suite has been executed because application code has not been initialized.
+
+**Next**
+Phase 0.6 — Record development workflow and decision log.
