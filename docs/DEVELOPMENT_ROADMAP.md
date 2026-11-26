@@ -94,6 +94,12 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
   - Render the island from an Astro page using an explicit hydration directive
   - Verify that the page renders server-side and the interactive control works in the Vercel deployment
 - 1.3 Configure strict TypeScript
+  - Pin a TypeScript version supported by the selected Astro diagnostics toolchain
+  - Add `@astrojs/check` and a dedicated `astro check` package script
+  - Explicitly enable strict mode and selected additional type-safety compiler options
+  - Remove deprecated or unnecessary TypeScript compiler options
+  - Ensure path aliases remain valid without relying on deprecated configuration
+  - Run type and Astro diagnostics in the Vercel build pipeline; do not mark verified until deployment logs show a clean check
 - 1.4 Integrate Tailwind CSS
 - 1.5 Configure ESLint and Prettier
 - 1.6 Configure Vitest
@@ -101,7 +107,7 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
 - 1.8 Configure package scripts and environment handling
 - 1.9 Configure Vercel deployment
 
-Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in a Vercel Preview deployment.
+Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in the Vercel deployment. Phase 1.3 requires strict compiler settings, the Astro type-checking toolchain, and a clean `astro check` result evidenced by the Vercel deployment logs.
 
 ### Phase 2 — Application Architecture
 - 2.1 Establish application layouts
