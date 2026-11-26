@@ -9,7 +9,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Current phase: Phase 1 — Project Initialization
 - Current subphase: 1.2 — Integrate React
 - Overall status: IN PROGRESS
-- Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of Vercel Preview)
+- Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of the Vercel deployment)
 - Latest phase artifact commit: `55d1099bc63579354c78ccf2f5599f4c012d716b`
 - Next planned work: Verify the React island in the Vercel deployment; then continue Phase 1.3 — Configure strict TypeScript
 
