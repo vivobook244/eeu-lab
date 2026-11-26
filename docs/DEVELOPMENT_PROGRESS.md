@@ -7,9 +7,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-26
 - Active branch: `main`
 - Current phase: Phase 0 — Engineering Preparation
-- Current subphase: 0.4 — Define coding conventions and quality gates
+- Current subphase: 0.5 — Define testing and validation strategy
 - Overall status: IN PROGRESS
-- Latest phase artifact commit: `a6d5cb75a40cf6e1e11d0001da90539589b66e36`
+- Latest phase artifact commit: `78868880f34610f3dc76128c6e43b0a89fdf96ef`
 
 ## Status definitions
 
@@ -26,9 +26,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 0.1 | Inspect repository, default branch, and initial state | VERIFIED | Repository metadata and branch state inspected on 2026-11-26. |
 | 0.2 | Define application architecture and technical boundaries | VERIFIED | Architecture boundaries, rendering strategy, localization, simulation state ownership, and 2D-first visualization documented. |
 | 0.3 | Define source and documentation structure | VERIFIED | Exact source, test, documentation, naming, and dependency boundaries documented in PROJECT_STRUCTURE.md. |
-| 0.4 | Define coding conventions and quality gates | IN PROGRESS | Next subphase. |
+| 0.4 | Define coding conventions and quality gates | VERIFIED | TypeScript, scientific-computing, error-handling, dependency, documentation, and quality-gate standards documented. |
 
-| 0.5 | Define testing and validation strategy | NOT STARTED | |
+| 0.5 | Define testing and validation strategy | IN PROGRESS | Next subphase. |
 | 0.6 | Record development workflow and decision log | NOT STARTED | |
 | 1.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
@@ -167,3 +167,49 @@ Define a practical repository layout that enforces the architecture boundaries a
 
 **Next**
 Phase 0.4 — Define coding conventions and quality gates.
+
+### 2026-11-26 — Phase 0.4 coding conventions and quality gates defined
+
+**Phase:** 0 — Engineering Preparation  
+**Subphase:** 0.4 — Define coding conventions and quality gates  
+**Status:** VERIFIED
+
+**Objective**
+Establish practical coding rules and evidence-based quality gates before application implementation begins.
+
+**Work completed**
+- Defined strict TypeScript policy, including restrictions on `any`, unsafe assertions, non-null assertions, and weakened compiler settings.
+- Defined naming, module responsibility, public API, and dependency conventions.
+- Defined scientific-computing rules for SI units, finite inputs, model constraints, numerical methods, analytical/reference comparisons, and presentation rounding.
+- Defined input validation, expected error handling, runtime lifecycle, and cleanup expectations.
+- Defined Astro/React responsibilities, UI state boundaries, semantic controls, and accessibility expectations.
+- Defined Prettier, ESLint, type-check, unit, integration, end-to-end, and production-build quality gates.
+- Defined documentation, dependency, commit, and phase-history policies.
+- Recorded durable decisions as DEC-016 and DEC-017.
+
+**Artifacts created or updated**
+- `docs/architecture/CODING_STANDARDS.md` — new coding conventions and quality-gate specification.
+- `docs/DEVELOPMENT_ROADMAP.md` — detailed Phase 0.4 tasks and exit criteria.
+- `docs/DECISIONS.md` — recorded DEC-016 and DEC-017.
+- `docs/DEVELOPMENT_PROGRESS.md` — current status and this history entry.
+
+**Commits**
+- `f15ca7a267314ef3c04eba368356c729a13f0f4e` — `docs: define coding standards and quality gates`
+- `797bf4f3e6d960e1f91af86373249ea52602ab1b` — `docs: detail coding standards phase tasks`
+- `78868880f34610f3dc76128c6e43b0a89fdf96ef` — `docs: record coding standards decisions`
+
+**Validation**
+- Reviewed the standards against the existing application architecture and project structure documents.
+- Confirmed the quality gates include formatting, lint, strict type-check, unit tests, integration tests, end-to-end tests, and production build.
+- Confirmed documentation-only work does not falsely claim application tests or builds were run.
+- Confirmed the policy defers exact package versions and tool configuration to Phase 1.
+- No application code was changed; no application build or automated tests were applicable.
+- Repository work remains on `main`; no additional branch was created.
+
+**Limitations / deferred decisions**
+- Exact ESLint and Prettier configuration, TypeScript compiler options, scripts, CI provider, and package versions are deferred to Phase 1.
+- Detailed test case taxonomy and validation matrix are finalized in Phase 0.5.
+- No runtime code exists yet, so these rules are documented policy and have not yet been enforced by automated tooling.
+
+**Next**
+Phase 0.5 — Define testing and validation strategy.
