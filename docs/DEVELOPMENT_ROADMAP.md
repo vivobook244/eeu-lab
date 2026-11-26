@@ -46,10 +46,16 @@ Working branch: `main`
   - Define documentation locations and import conventions
   - Record the exact structure in `docs/architecture/PROJECT_STRUCTURE.md`
 - 0.4 Define coding conventions and quality gates
+  - Define strict TypeScript safety rules and module conventions
+  - Define scientific computation, SI unit, numerical validation, and error-handling rules
+  - Define Astro/React implementation responsibilities and accessibility expectations
+  - Define formatting, lint, type-check, test, and production-build quality gates
+  - Define dependency, documentation, and commit policies
+  - Record the standards in `docs/architecture/CODING_STANDARDS.md`
 - 0.5 Define testing and validation strategy
 - 0.6 Record development workflow and decision log
 
-Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures are explicit and consistent with the architecture.
+Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures, coding standards, and quality gates are explicit and consistent with the architecture.
 
 ### Phase 1 — Project Initialization
 - 1.1 Initialize Astro
