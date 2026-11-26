@@ -7,9 +7,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-26
 - Active branch: `main`
 - Current phase: Phase 0 — Engineering Preparation
-- Current subphase: 0.3 — Define source and documentation structure
+- Current subphase: 0.4 — Define coding conventions and quality gates
 - Overall status: IN PROGRESS
-- Latest phase artifact commit: `47c9d6a3be3d62554c06b69562ce861cea9bba17`
+- Latest phase artifact commit: `a6d5cb75a40cf6e1e11d0001da90539589b66e36`
 
 ## Status definitions
 
@@ -25,8 +25,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 |---|---|---|---|
 | 0.1 | Inspect repository, default branch, and initial state | VERIFIED | Repository metadata and branch state inspected on 2026-11-26. |
 | 0.2 | Define application architecture and technical boundaries | VERIFIED | Architecture boundaries, rendering strategy, localization, simulation state ownership, and 2D-first visualization documented. |
-| 0.3 | Define source and documentation structure | IN PROGRESS | Next subphase. | |
-| 0.4 | Define coding conventions and quality gates | NOT STARTED | |
+| 0.3 | Define source and documentation structure | VERIFIED | Exact source, test, documentation, naming, and dependency boundaries documented in PROJECT_STRUCTURE.md. |
+| 0.4 | Define coding conventions and quality gates | IN PROGRESS | Next subphase. |
+
 | 0.5 | Define testing and validation strategy | NOT STARTED | |
 | 0.6 | Record development workflow and decision log | NOT STARTED | |
 | 1.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
@@ -117,3 +118,52 @@ Define the application layers, technology responsibilities, dependency rules, re
 
 **Next**
 Phase 0.3 — Define source and documentation structure.
+
+### 2026-11-26 — Phase 0.3 source and documentation structure defined
+
+**Phase:** 0 — Engineering Preparation  
+**Subphase:** 0.3 — Define source and documentation structure  
+**Status:** VERIFIED
+
+**Objective**
+Define a practical repository layout that enforces the architecture boundaries and gives source code, tests, and technical documentation clear homes.
+
+**Work completed**
+- Defined Astro page/layout/content locations and explicit locale organization.
+- Separated reusable Astro components from React interactive components.
+- Defined dedicated Physics Domain, Simulation Runtime, and Visualization areas.
+- Defined asset placement, naming conventions, import alias policy, and dependency restrictions.
+- Defined unit, integration, and end-to-end test locations.
+- Defined technical documentation locations while preserving existing top-level roadmap, progress, and decision documents.
+- Linked the detailed structure specification from the application architecture and expanded Phase 0.3 roadmap tasks.
+- Recorded durable structure and testing-location decisions as DEC-014 and DEC-015.
+- Corrected the Phase 0.3 status table formatting while updating this log.
+
+**Artifacts created or updated**
+- `docs/architecture/PROJECT_STRUCTURE.md` — new detailed source and documentation structure.
+- `docs/architecture/APPLICATION_ARCHITECTURE.md` — links to the detailed structure specification.
+- `docs/DEVELOPMENT_ROADMAP.md` — explicit Phase 0.3 tasks and exit criteria.
+- `docs/DECISIONS.md` — recorded DEC-014 and DEC-015.
+- `docs/DEVELOPMENT_PROGRESS.md` — current status and this history entry.
+
+**Commits**
+- `9a73ad9e7de90ba89f08eb940fe46f8a986b9d86` — `docs: define project source and documentation structure`
+- `9dd5ebb0553dd2e9871081b6f9e5d94aa7a7a423` — `docs: detail project structure phase tasks`
+- `749f4880f9b9791da793a3f800321ce66fb9264e` — `docs: link architecture to project structure`
+- `a6d5cb75a40cf6e1e11d0001da90539589b66e36` — `docs: record project structure decisions`
+
+**Validation**
+- Checked the proposed layout against the five-layer application architecture.
+- Confirmed the Physics Domain has no dependency on UI, browser, or rendering layers.
+- Confirmed the runtime, visualization, content, and component responsibilities are separately documented.
+- Confirmed existing top-level documentation paths and prior history remain intact.
+- Documentation-only change: no application build or automated tests were applicable.
+- Repository branch policy remains `main` only.
+
+**Limitations / deferred decisions**
+- Exact Astro content collection configuration is deferred until the Astro version is selected in Phase 1.
+- Package versions, lint/format rules, compiler options, and CI quality gates are finalized in Phase 0.4 and Phase 1.
+- Directories are to be created only when their first real module is added.
+
+**Next**
+Phase 0.4 — Define coding conventions and quality gates.
