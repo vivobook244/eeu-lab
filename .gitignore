@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Astro build output and generated types
+dist/
+.astro/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Deployment and editor files
+.vercel/
+.DS_Store
+.vscode/
+.idea/
