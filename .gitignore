@@ -15,3 +15,6 @@ dist/
 .DS_Store
 .vscode/
 .idea/
+
+# Vitest cache and reports
+.vitest/
