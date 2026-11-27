@@ -12,8 +12,8 @@
     "build": "npm run check && npm run lint && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint \"**/*.{js,mjs,cjs,ts,tsx,astro}\"",
+    "lint:fix": "eslint \"**/*.{js,mjs,cjs,ts,tsx,astro}\" --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
