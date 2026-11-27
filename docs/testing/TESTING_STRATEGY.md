@@ -57,6 +57,20 @@ Guidelines:
 - Keep test fixtures explicit and small; avoid hidden shared mutable state.
 - Do not introduce snapshots as the only evidence for numerical correctness.
 
+## 3.1 Initial Vitest runner configuration
+
+The initial unit-test runner is Vitest, configured in the repository-root `vitest.config.ts`.
+
+- Run tests in the Node environment by default; pure physics and runtime tests must not require a browser.
+- Discover only `tests/**/*.test.ts` and `tests/**/*.test.tsx` initially.
+- Import test APIs explicitly from `vitest`; do not enable implicit global test APIs.
+- Clear mock call history and restore spies/stubs between tests to reduce cross-test state leakage.
+- Use `npm run test:run` for deterministic one-shot execution and `npm run test:watch` during active development.
+- The empty-suite allowance is temporary for Phase 1.6 tooling bootstrap only. Remove `passWithNoTests` from the Vitest configuration when the first real domain tests are introduced in Phase 4.
+- Do not add a browser DOM environment or coverage provider until a concrete test requirement justifies the dependency.
+
+The production build invokes the one-shot runner. During the bootstrap period it may report that no test files exist; this is not evidence that any physics behavior has been validated. Phase 4 must add real solver tests and make an empty suite fail.
+
 ## 4. Physics model unit testing
 
 Every solver must have tests before it is integrated into a learner-facing experiment.
