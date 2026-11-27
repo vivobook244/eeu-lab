@@ -101,7 +101,7 @@ Scientific correctness takes precedence over convenience or visual smoothness.
 
 ## 8. Formatting, linting, and code clarity
 
-The project will use Prettier for formatting and ESLint for static code-quality rules, configured during Phase 1.
+The project uses Prettier for formatting and ESLint for static code-quality rules. Configuration lives in `.prettierrc.json` and `eslint.config.mjs`; exact package versions and scripts are pinned in `package.json`.
 
 Required policy:
 - Formatting must be automated; do not debate formatting in code review.
@@ -138,7 +138,7 @@ Architecture or API changes that alter layer boundaries must update the relevant
 - Do not add a package that duplicates existing platform/framework capabilities without a clear benefit.
 - Keep optional heavy visualization packages out of pages that do not need them.
 - Record significant dependencies and architectural consequences in the decision log.
-- Exact package versions and dependency review process are finalized in Phase 1.
+- Significant package versions and dependency consequences are recorded in the development progress history; direct development dependencies are pinned exactly in `package.json`.
 
 ## 11. Required quality gates
 
@@ -184,12 +184,9 @@ Before a code change is considered complete:
 
 ## 14. Deferred implementation details
 
-The following will be configured in Phase 1 rather than guessed here:
-- Exact ESLint flat-config rules and plugins.
-- Exact Prettier options.
-- TypeScript compiler options beyond the strict requirement.
-- Package scripts and command names.
-- CI workflow provider and configuration.
+The following remain deferred until their corresponding implementation phases:
+- TypeScript compiler options beyond the strict requirement, when new source requirements justify changes.
+- CI workflow provider and configuration; Vercel is the current deployment validation environment.
 - Exact component-testing tooling and browser matrix.
 
 ## 15. Phase 0.4 acceptance criteria
