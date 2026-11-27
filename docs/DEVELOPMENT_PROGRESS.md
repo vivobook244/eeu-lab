@@ -635,6 +635,7 @@ Integrate the current official Tailwind CSS v4 toolchain into Astro while keepin
 - `5d93a4509300463a68506eb3c68ff2cab6ed3a9d` — `style: apply Tailwind utilities to React island`
 - `41299250874a3ce62dc16a2d6aef0b8ae0ed3d7e` — `docs: define Tailwind integration acceptance criteria`
 - `e9dd49077f26b915b0479ef70a7cf919ab3926e7` — `docs: add Tailwind presentation standards`
+- `f3cfaed3944202809e82f1175d7e4ccb0278d5d9` — `docs: correct coding standards section numbering`
 
 **Validation**
 - Official Astro and Tailwind documentation reviewed for the supported Tailwind v4 Vite plugin integration.
