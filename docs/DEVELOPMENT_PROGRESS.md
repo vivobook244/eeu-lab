@@ -7,11 +7,12 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-27
 - Active branch: `main`
 - Current phase: Phase 1 — Project Initialization
-- Current subphase: 1.4 — Integrate Tailwind CSS
+- Current subphase: 1.5 — Configure ESLint and Prettier
 - Overall status: IN PROGRESS
 - Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of the Vercel deployment)
-- Latest phase artifact commit: `5d93a4509300463a68506eb3c68ff2cab6ed3a9d`
-- Next planned work: Deploy and verify Phase 1.4 in Vercel; then continue Phase 1.5 — Configure ESLint and Prettier
+- Latest phase artifact commit: `0e85732106bdf1660f7b482143c557fd902133c0`
+- Latest documentation commit before this progress update: `3d9377c65479cbcd9ca1e7778b37b5db4a9d0f3d`
+- Next planned work: Deploy the latest `main` commit and verify Phase 1.4 and Phase 1.5 through Vercel
 
 ## Status definitions
 
@@ -36,7 +37,8 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 1.2 | Integrate React | VERIFIED | Official integration and hydrated React island deployed; user confirmed the interactive counter works in the Vercel deployment on 2026-11-26. |
 | 1.3 | Configure strict TypeScript | VERIFIED | Vercel build on 2026-11-27: `astro check` reported 0 errors, 0 warnings, 0 hints; Astro static production build and deployment completed successfully. |
 | 1.4 | Integrate Tailwind CSS | IMPLEMENTED | Tailwind CSS 4.3.5 and official Vite plugin configured; global stylesheet and responsive Astro/React utility styling added. Vercel verification pending. |
-| 1.5–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
+| 1.5 | Configure ESLint and Prettier | IMPLEMENTED | ESLint flat config, TypeScript/Astro support, Prettier Astro/Tailwind plugins, scripts, and build lint gate added. Vercel validation pending. |
+| 1.6–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
 ---
@@ -651,3 +653,70 @@ Integrate the current official Tailwind CSS v4 toolchain into Astro while keepin
 
 **Next**
 Deploy the latest `main` commit to Vercel. Verify that the responsive Tailwind styling appears correctly at desktop and mobile widths, that the React interaction still increments, and that the TypeScript diagnostics and production build pass.
+
+### 2026-11-27 — Phase 1.5 ESLint and Prettier configured
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.5 — Configure ESLint and Prettier  
+**Status:** IMPLEMENTED
+
+**Objective**  
+Add consistent static analysis and formatting for Astro, TypeScript, React TSX, and Tailwind CSS without introducing unnecessary typed-linting or editor-specific complexity.
+
+**Preflight inspection**
+- Confirmed repository: `vivobook244/eeu-lab`.
+- Confirmed the only working branch is `main`; no additional branch was created.
+- Confirmed the pre-implementation latest commit was `5c224ec1a5a6ce9aa8cf0ca9314b01f202d073e5`.
+- Re-read the package manifest, Astro landing page, React integration component, Astro configuration, roadmap, progress history, and coding standards.
+- Existing source remains small; no custom rule framework or type-aware lint project was justified.
+
+**Implementation**
+- Pinned ESLint `10.15.0` and `@eslint/js 10.0.1`.
+- Added `typescript-eslint 8.74.0` for TypeScript/TSX linting and `eslint-plugin-astro 3.2.1` for Astro component linting.
+- Confirmed the selected Astro ESLint plugin requires ESLint 10 and Node.js 22.22.3 or newer in the Node 22 line; the project's pinned Node `22.23.4` satisfies that requirement.
+- Configured flat ESLint rules using recommended JavaScript, TypeScript, and Astro presets.
+- Added narrow baseline rules for debugger statements and console usage.
+- Pinned Prettier `3.10.1`, `prettier-plugin-astro 1.1.2`, and `prettier-plugin-tailwindcss 0.8.1`.
+- Configured Astro formatting and Tailwind class sorting, with the Tailwind plugin loaded last as required by its compatibility guidance.
+- Added `lint`, `lint:fix`, `format`, and `format:check` package scripts.
+- Added linting to the production build sequence after Astro diagnostics.
+- Updated README commands, roadmap acceptance criteria, and coding standards.
+
+**Files created or updated**
+- `package.json`
+- `eslint.config.mjs` (new)
+- `.prettierrc.json` (new)
+- `.prettierignore` (new)
+- `README.md`
+- `docs/DEVELOPMENT_ROADMAP.md`
+- `docs/architecture/CODING_STANDARDS.md`
+- `docs/DEVELOPMENT_PROGRESS.md`
+
+**Commits**
+- `6c7038962cd6f9078c1c5c9c8950224c97f39fcf` — `build: add ESLint and Prettier toolchain`
+- `bb0dd47a451e24bf6effcd48c01a7ea357b9d729` — `build: configure ESLint flat config`
+- `efcd6f2f2cbe88006ae9d6d79bf34a6a2fadc787` — `style: configure Prettier formatting`
+- `1464f8292f219c614d922862cf08d37a9bf4671f` — `style: ignore generated files in Prettier`
+- `9a6388c0dc3ead8f405224f0cec379628450d367` — `build: align Astro ESLint preset with plugin API`
+- `0e85732106bdf1660f7b482143c557fd902133c0` — `build: enforce lint during production build`
+- `b64fd6724d45505bf9544ca3c3515eb5c1098cc3` — `docs: define ESLint and Prettier phase criteria`
+- `970dc18787011d36bb22cec09f01360e984308b7` — `docs: record configured lint and formatting standards`
+- `3d9377c65479cbcd9ca1e7778b37b5db4a9d0f3d` — `docs: document lint and formatting commands`
+
+**Validation**
+- Reviewed the official ESLint flat-config guidance and Astro ESLint plugin requirements.
+- Confirmed the selected TypeScript ESLint release supports TypeScript `6.0.3` (supported range is below `6.1.0`).
+- Confirmed the Astro plugin's Node requirement is satisfied by the pinned Node `22.23.4`.
+- Configuration and documentation commits succeeded on `main`.
+- Dependency installation, `astro check`, ESLint execution, Prettier check, and production build: NOT RUN in this environment. The available runtime is Node `22.16.0`, below the project's declared minimum, and the agreed validation workflow uses Vercel rather than requiring local testing.
+- Phase remains IMPLEMENTED until Vercel confirms dependency installation, zero lint errors, clean Astro diagnostics, and a successful production build. Formatting check must also be run in a compatible environment before VERIFIED.
+
+**Known limitations / separate follow-up**
+- Phase 1.1 remains IMPLEMENTED because `package-lock.json` is still not committed.
+- Phase 1.4 remains IMPLEMENTED pending Vercel build and responsive browser verification.
+- The current Prettier script checks the repository contents except generated and ignored files; if the first check reports pre-existing formatting differences, apply Prettier and review the resulting diff before committing.
+- ESLint currently uses recommended non-type-aware rules; type-aware linting is deferred until it demonstrates value beyond the strict Astro/TypeScript diagnostics already in the build.
+
+**Next**
+Deploy the latest `main` commit to Vercel. Review dependency installation, `astro check`, ESLint, and Astro production build logs. Run `npm run format:check` in a compatible environment, then verify the responsive landing page and React interaction before marking Phase 1.4 and 1.5 VERIFIED.
+
