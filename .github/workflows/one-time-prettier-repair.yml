@@ -1,0 +1,54 @@
+name: One-time Prettier repair
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up project Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.4
+
+      - name: Install pinned project dependencies without creating a lockfile
+        run: npm install --no-package-lock
+
+      - name: Format the files reported by Vercel
+        run: >
+          npx prettier --write
+          docs/architecture/APPLICATION_ARCHITECTURE.md
+          docs/architecture/CODING_STANDARDS.md
+          docs/architecture/PROJECT_STRUCTURE.md
+          docs/DECISIONS.md
+          docs/DEVELOPMENT_PROGRESS.md
+          docs/DEVELOPMENT_ROADMAP.md
+          docs/development/DEVELOPMENT_WORKFLOW.md
+          docs/testing/TESTING_STRATEGY.md
+          src/components/react/simulation/ReactIslandDemo.tsx
+          src/pages/index.astro
+          src/styles/global.css
+          tsconfig.json
+
+      - name: Commit formatted files
+        run: |
+          if git diff --quiet; then
+            echo "All selected files already match Prettier."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs src tsconfig.json
+          git commit -m "style: apply Prettier formatting"
+          git push origin HEAD:main
