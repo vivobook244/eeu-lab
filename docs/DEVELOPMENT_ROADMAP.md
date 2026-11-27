@@ -117,11 +117,19 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
   - Make lint a required production-build quality gate
   - Verify dependency installation, lint, formatting, type diagnostics, and production build through Vercel
 - 1.6 Configure Vitest
+  - Pin a Vitest version compatible with the repository's Node and Vite toolchain
+  - Add a dedicated Vitest configuration for deterministic Node-environment unit tests
+  - Restrict initial test discovery to `tests/**/*.test.ts` and `tests/**/*.test.tsx`
+  - Configure mock cleanup/restoration between tests
+  - Add explicit one-shot and watch-mode test scripts
+  - Run the one-shot test command as part of the production build quality gate
+  - Allow an empty test suite only during the tooling bootstrap; remove that allowance when the first domain unit tests are introduced
+  - Verify the runner initializes and the production build completes in Vercel
 - 1.7 Configure Playwright
 - 1.8 Configure package scripts and environment handling
 - 1.9 Configure Vercel deployment
 
-Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in the Vercel deployment. Phase 1.3 requires strict compiler settings, the Astro type-checking toolchain, and a clean `astro check` result evidenced by the Vercel deployment logs. Phase 1.4 requires the official Tailwind v4 Vite plugin, a working global stylesheet, Tailwind utilities rendered on both Astro and React content, responsive styling, and a successful Vercel deployment smoke test. Phase 1.5 requires ESLint flat config to cover the project's JavaScript, TypeScript, TSX, and Astro files; Prettier to format the source and sort Tailwind classes; working lint/format scripts; and clean Vercel lint, diagnostics, and production-build results.
+Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in the Vercel deployment. Phase 1.3 requires strict compiler settings, the Astro type-checking toolchain, and a clean `astro check` result evidenced by the Vercel deployment logs. Phase 1.4 requires the official Tailwind v4 Vite plugin, a working global stylesheet, Tailwind utilities rendered on both Astro and React content, responsive styling, and a successful Vercel deployment smoke test. Phase 1.5 requires ESLint flat config to cover the project's JavaScript, TypeScript, TSX, and Astro files; Prettier to format the source and sort Tailwind classes; working lint/format scripts; and clean Vercel lint, diagnostics, and production-build results. Phase 1.6 requires the pinned Vitest runner, a dedicated deterministic Node test configuration, one-shot/watch scripts, and a successful Vercel build that executes the runner. Empty-suite tolerance is temporary and must be removed when the first real domain unit tests are added.
 
 ### Phase 2 — Application Architecture
 - 2.1 Establish application layouts
