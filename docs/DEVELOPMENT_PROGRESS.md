@@ -7,12 +7,12 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-27
 - Active branch: `main`
 - Current phase: Phase 1 — Project Initialization
-- Current subphase: 1.6 — Configure Vitest
+- Current subphase: 1.6 — Configure Vitest (verified; awaiting completion of adjacent setup checks)
 - Overall status: IN PROGRESS
 - Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of the Vercel deployment)
-- Latest phase artifact commit: `3533387c9d7c893dcd635f276930a7b5ee0d9004`
-- Latest documentation commit before this progress update: `268d411b9918e6c05af53c5df86cab2595c8253e`
-- Next planned work: Deploy the latest `main` commit and verify Phase 1.4, 1.5, and 1.6 through Vercel
+- Latest phase artifact commit: `a696c09e9f9c1f94eba192bfe1e77d6862e5bf42`
+- Latest documentation commit before this progress update: `a696c09e9f9c1f94eba192bfe1e77d6862e5bf42`
+- Next planned work: Complete the pending browser smoke test and Prettier check; resolve the TypeScript ESLint-config deprecation hint before Phase 1.7
 
 ## Status definitions
 
@@ -36,9 +36,9 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 1.1 | Initialize Astro | IMPLEMENTED | Vercel dependency installation and production build PASS; committed package lockfile pending. Local dev-server testing is waived in favor of the Vercel deployment per the agreed workflow. |
 | 1.2 | Integrate React | VERIFIED | Official integration and hydrated React island deployed; user confirmed the interactive counter works in the Vercel deployment on 2026-11-26. |
 | 1.3 | Configure strict TypeScript | VERIFIED | Vercel build on 2026-11-27: `astro check` reported 0 errors, 0 warnings, 0 hints; Astro static production build and deployment completed successfully. |
-| 1.4 | Integrate Tailwind CSS | IMPLEMENTED | Tailwind CSS 4.3.5 and official Vite plugin configured; global stylesheet and responsive Astro/React utility styling added. Vercel verification pending. |
-| 1.5 | Configure ESLint and Prettier | IMPLEMENTED | ESLint flat config, TypeScript/Astro support, Prettier Astro/Tailwind plugins, scripts, and build lint gate added. Vercel validation pending. |
-| 1.6 | Configure Vitest | IMPLEMENTED | Vitest 5.1.2, Node-based test config, one-shot/watch scripts, mock cleanup, and build test gate added. Vercel validation pending; no physics tests exist yet. |
+| 1.4 | Integrate Tailwind CSS | IMPLEMENTED | Vercel production build passed on 2026-11-27; desktop/mobile visual check and React interaction browser smoke test still pending. |
+| 1.5 | Configure ESLint and Prettier | IMPLEMENTED | ESLint passed in Vercel build on 2026-11-27; Prettier `format:check` has not yet been run. `astro check` emitted one deprecation hint from `tseslint.config()`. |
+| 1.6 | Configure Vitest | VERIFIED | Vercel build on 2026-11-27 installed dependencies, ran Vitest 5.1.2 successfully, and completed Astro production build/deployment. Runner reported no test files; temporary `passWithNoTests` allows this until Phase 4 adds real physics tests. |
 | 1.7–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
@@ -791,3 +791,36 @@ Establish a repeatable, deterministic unit-test runner for future physics and si
 **Next**
 Deploy the latest `main` commit to Vercel. Confirm dependency installation, `astro check`, ESLint, Vitest runner startup, and Astro production build. After verification, continue Phase 1.7 — Configure Playwright.
 
+
+
+### 2026-11-27 — Phase 1.6 Vitest verified through Vercel
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.6 — Configure Vitest  
+**Status:** VERIFIED
+
+**Verification evidence supplied by the project owner**
+- Vercel deployed branch `main`, commit `a696c09e9f9c1f94eba192bfe1e77d6862e5bf42`.
+- Dependency installation completed successfully.
+- `astro check` completed with 0 errors and 0 warnings; it reported 1 TypeScript deprecation hint in `eslint.config.mjs` for `tseslint.config()`.
+- ESLint completed successfully with no reported lint errors.
+- Vitest `5.1.2` started and exited with code 0. It reported that no test files were found.
+- Astro generated the static route and completed the production build.
+- Vercel reported **Build Completed** and **Deployment completed**.
+
+**Acceptance criteria**
+- Vitest dependency resolves in the Vercel environment: PASS.
+- Vitest configuration loads and runner executes: PASS.
+- Test command is included in the production build gate: PASS.
+- Vercel production build and deployment complete: PASS.
+
+**Important limitation**
+- No unit tests exist yet. The zero-test result is accepted only as a temporary tooling-bootstrap state because `passWithNoTests: true` is enabled. This does not validate any physics calculations. Remove that allowance when Phase 4 adds the first real solver tests.
+
+**Adjacent work still pending**
+- Phase 1.4: build confirms Tailwind integration compiles, but desktop/mobile browser rendering and React interaction smoke test still need owner confirmation.
+- Phase 1.5: ESLint passed, but `npm run format:check` has not been run. The TypeScript deprecation hint should be resolved.
+- Phase 1.1: committed `package-lock.json` is still not confirmed.
+
+**Next**
+Resolve the deprecated TypeScript ESLint config helper, run the Prettier check in a compatible environment, and obtain browser smoke-test confirmation before closing the remaining Phase 1 setup gates.
