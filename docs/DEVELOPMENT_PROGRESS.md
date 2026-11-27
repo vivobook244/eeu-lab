@@ -36,7 +36,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 1.1 | Initialize Astro | IMPLEMENTED | Vercel dependency installation and production build PASS; committed package lockfile pending. Local dev-server testing is waived in favor of the Vercel deployment per the agreed workflow. |
 | 1.2 | Integrate React | VERIFIED | Official integration and hydrated React island deployed; user confirmed the interactive counter works in the Vercel deployment on 2026-11-26. |
 | 1.3 | Configure strict TypeScript | VERIFIED | Vercel build on 2026-11-27: `astro check` reported 0 errors, 0 warnings, 0 hints; Astro static production build and deployment completed successfully. |
-| 1.4 | Integrate Tailwind CSS | IMPLEMENTED | Vercel production build passed on 2026-11-27; desktop/mobile visual check and React interaction browser smoke test still pending. |
+| 1.4 | Integrate Tailwind CSS | VERIFIED | Vercel production build passed; project owner confirmed the landing page renders normally on desktop and mobile, and the React counter interaction had previously been confirmed working. |
 | 1.5 | Configure ESLint and Prettier | IMPLEMENTED | ESLint passed in Vercel build on 2026-11-27; Prettier `format:check` has not yet been run. `astro check` emitted one deprecation hint from `tseslint.config()`. |
 | 1.6 | Configure Vitest | VERIFIED | Vercel build on 2026-11-27 installed dependencies, ran Vitest 5.1.2 successfully, and completed Astro production build/deployment. Runner reported no test files; temporary `passWithNoTests` allows this until Phase 4 adds real physics tests. |
 | 1.7–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
@@ -824,3 +824,28 @@ Deploy the latest `main` commit to Vercel. Confirm dependency installation, `ast
 
 **Next**
 Resolve the deprecated TypeScript ESLint config helper, run the Prettier check in a compatible environment, and obtain browser smoke-test confirmation before closing the remaining Phase 1 setup gates.
+
+
+### 2026-11-27 — Phase 1.4 Tailwind CSS browser smoke test verified
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.4 — Integrate Tailwind CSS  
+**Status:** VERIFIED
+
+**Verification evidence supplied by the project owner**
+- Latest Vercel deployment for commit `a696c09e9f9c1f94eba192bfe1e77d6862e5bf42` completed successfully.
+- Project owner confirmed the landing page displays normally on desktop and mobile.
+- Project owner had previously confirmed that the hydrated React counter works in the Vercel deployment.
+- The same deployment completed the Astro production build successfully, confirming Tailwind's Vite integration compiles in production.
+
+**Acceptance criteria**
+- Tailwind CSS is integrated into Astro and React: PASS.
+- Production CSS generation and Astro build: PASS.
+- Desktop and mobile visual smoke test: PASS (owner confirmation).
+- React island interaction: PASS (owner confirmation).
+
+**Limitations**
+- This is a smoke test of the current landing page, not a complete responsive/accessibility audit of future simulation interfaces.
+
+**Next**
+Complete Phase 1.5's Prettier check and remove the deprecated TypeScript ESLint configuration helper before proceeding to Phase 1.7 — Playwright.
