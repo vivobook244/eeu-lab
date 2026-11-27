@@ -9,6 +9,7 @@ Working branch: `main`
 ## 1. Goals
 
 This structure makes the architecture boundaries explicit without creating a large framework inside the application. It must support:
+
 - Astro-rendered, localized public pages and authored learning content.
 - Small React islands for interactive experiments and controls.
 - Independently testable TypeScript physics models.
@@ -88,29 +89,29 @@ The tree is a target map, not a requirement to create every folder immediately. 
 
 ## 3. Directory responsibilities
 
-| Path | Responsibility | Constraints |
-|---|---|---|
-| `src/pages/` | Astro route entry points and page composition | No physics calculations |
-| `src/layouts/` | Shared Astro document/page layouts | Own document shell and metadata composition |
-| `src/components/astro/` | Reusable Astro-only content and layout components | Keep static rendering where possible |
-| `src/components/react/` | React islands and interactive UI | UI orchestration only; no duplicated solver equations |
-| `src/content/` | Authored lessons and articles, grouped by locale | Data/content only; never execute arbitrary content code |
-| `src/i18n/` | Locale definitions, labels, and localization helpers | Avoid embedding page-specific content here |
-| `src/physics/` | Pure physics domain: constants, units, math, model parameters, solvers | Must not depend on UI, Astro, DOM, browser APIs, or renderers |
-| `src/simulation/runtime/` | Lifecycle, clock, stepping, and solver coordination | May depend on Physics Domain; must not depend on React |
-| `src/simulation/measurement/` | Sampling and measurement data derived from simulation state | Must preserve explicit units and time basis |
-| `src/simulation/graph/` | Graph series and graph-facing data contracts | Data preparation only; rendering belongs in visualization |
-| `src/visualization/` | Canvas/SVG drawing, coordinate mapping, and rendering adapters | Consumes snapshots; does not calculate the physical model |
-| `src/styles/` | Global styles and shared design foundations | No application/domain logic |
-| `src/assets/` | Assets imported and processed by the build | Publicly addressable static files belong in `public/` |
-| `public/` | Files served as-is, such as public icons and static images | No build-time module imports |
-| `tests/unit/` | Fast isolated tests for pure modules and rendering helpers | Mirror source responsibility where practical |
-| `tests/integration/` | Tests across runtime, solver, measurements, and adapters | Verify layer contracts |
-| `tests/e2e/` | Browser journeys for public pages and experiments | Test user-visible behavior |
-| `docs/architecture/` | Architecture and structural specifications | Keep durable design boundaries here |
-| `docs/physics/` | Scientific model specifications, equations, assumptions, and references | One specification per meaningful model/topic |
-| `docs/testing/` | Test strategy and quality procedures | Keep operational test guidance here |
-| `docs/releases/` | Release, deployment, and rollback records | Add when release workflow exists |
+| Path                          | Responsibility                                                          | Constraints                                                   |
+| ----------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `src/pages/`                  | Astro route entry points and page composition                           | No physics calculations                                       |
+| `src/layouts/`                | Shared Astro document/page layouts                                      | Own document shell and metadata composition                   |
+| `src/components/astro/`       | Reusable Astro-only content and layout components                       | Keep static rendering where possible                          |
+| `src/components/react/`       | React islands and interactive UI                                        | UI orchestration only; no duplicated solver equations         |
+| `src/content/`                | Authored lessons and articles, grouped by locale                        | Data/content only; never execute arbitrary content code       |
+| `src/i18n/`                   | Locale definitions, labels, and localization helpers                    | Avoid embedding page-specific content here                    |
+| `src/physics/`                | Pure physics domain: constants, units, math, model parameters, solvers  | Must not depend on UI, Astro, DOM, browser APIs, or renderers |
+| `src/simulation/runtime/`     | Lifecycle, clock, stepping, and solver coordination                     | May depend on Physics Domain; must not depend on React        |
+| `src/simulation/measurement/` | Sampling and measurement data derived from simulation state             | Must preserve explicit units and time basis                   |
+| `src/simulation/graph/`       | Graph series and graph-facing data contracts                            | Data preparation only; rendering belongs in visualization     |
+| `src/visualization/`          | Canvas/SVG drawing, coordinate mapping, and rendering adapters          | Consumes snapshots; does not calculate the physical model     |
+| `src/styles/`                 | Global styles and shared design foundations                             | No application/domain logic                                   |
+| `src/assets/`                 | Assets imported and processed by the build                              | Publicly addressable static files belong in `public/`         |
+| `public/`                     | Files served as-is, such as public icons and static images              | No build-time module imports                                  |
+| `tests/unit/`                 | Fast isolated tests for pure modules and rendering helpers              | Mirror source responsibility where practical                  |
+| `tests/integration/`          | Tests across runtime, solver, measurements, and adapters                | Verify layer contracts                                        |
+| `tests/e2e/`                  | Browser journeys for public pages and experiments                       | Test user-visible behavior                                    |
+| `docs/architecture/`          | Architecture and structural specifications                              | Keep durable design boundaries here                           |
+| `docs/physics/`               | Scientific model specifications, equations, assumptions, and references | One specification per meaningful model/topic                  |
+| `docs/testing/`               | Test strategy and quality procedures                                    | Keep operational test guidance here                           |
+| `docs/releases/`              | Release, deployment, and rollback records                               | Add when release workflow exists                              |
 
 ### Astro content configuration
 
@@ -158,6 +159,7 @@ Astro Pages / Layouts
 ```
 
 Rules:
+
 1. `src/physics/` is framework-agnostic pure TypeScript. It must not import from Astro, React, `src/components/`, `src/visualization/`, or browser APIs.
 2. `src/simulation/runtime/` may import Physics Domain contracts and solvers. It must not import React or manipulate the DOM.
 3. Measurement and graph data modules consume simulation outputs; they do not reimplement equations.
@@ -180,11 +182,13 @@ Rules:
 ## 8. Documentation layout
 
 Existing top-level documents remain canonical:
+
 - `docs/DEVELOPMENT_ROADMAP.md` — planned phases and acceptance criteria.
 - `docs/DEVELOPMENT_PROGRESS.md` — dated phase history and current status.
 - `docs/DECISIONS.md` — durable engineering decisions.
 
 Additional documents:
+
 - `docs/architecture/` — application and module architecture.
 - `docs/physics/` — model specifications, equations, assumptions, limitations, and scientific references.
 - `docs/testing/` — validation strategy and test procedures.
@@ -202,6 +206,7 @@ Do not move existing documents merely to make the tree uniform; preserve establi
 ## 10. Scope deliberately deferred
 
 The following are not decided or required by this structure:
+
 - Exact Astro, React, TypeScript, and test dependency versions.
 - Exact Astro content API/configuration syntax.
 - Charting library selection.
@@ -215,6 +220,7 @@ These choices require implementation evidence and are addressed in their relevan
 ## 11. Phase 0.3 acceptance criteria
 
 Phase 0.3 can be marked VERIFIED when:
+
 - The exact target source and documentation layout is recorded.
 - Responsibilities and forbidden dependencies for major directories are explicit.
 - Locale/content organization and route placement are explicit.

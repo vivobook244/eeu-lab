@@ -9,6 +9,7 @@ Working branch: `main`
 ## 1. Purpose
 
 Testing must establish more than whether the application renders. EEU LAB must demonstrate that:
+
 1. Physics calculations implement the documented model correctly.
 2. Simulation runtime advances, pauses, resets, and samples time consistently.
 3. Displayed measurements and graphs represent the same underlying simulation state.
@@ -19,15 +20,15 @@ A green software test suite does not by itself certify scientific correctness. S
 
 ## 2. Validation layers
 
-| Validation layer | Primary question | Main evidence |
-|---|---|---|
-| Mathematical/model | Are equations and solver outputs correct? | Unit tests, analytical solutions, reference calculations |
-| Runtime | Does simulated time and lifecycle behave deterministically? | Unit and integration tests |
-| Measurement/graph | Are values, samples, units, and plotted points consistent? | Contract and integration tests |
-| Presentation | Are controls, labels, formulas, and fallbacks understandable? | Component tests, accessibility checks, manual review |
-| End-to-end | Can a learner complete a realistic experiment? | Playwright browser journeys |
-| Scientific review | Are assumptions, interpretations, and explanations physically sound? | Model specification review and documented checklist |
-| Release | Is the built site stable, crawlable, and performant? | Production build, browser smoke tests, SEO/accessibility/performance review |
+| Validation layer   | Primary question                                                     | Main evidence                                                               |
+| ------------------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Mathematical/model | Are equations and solver outputs correct?                            | Unit tests, analytical solutions, reference calculations                    |
+| Runtime            | Does simulated time and lifecycle behave deterministically?          | Unit and integration tests                                                  |
+| Measurement/graph  | Are values, samples, units, and plotted points consistent?           | Contract and integration tests                                              |
+| Presentation       | Are controls, labels, formulas, and fallbacks understandable?        | Component tests, accessibility checks, manual review                        |
+| End-to-end         | Can a learner complete a realistic experiment?                       | Playwright browser journeys                                                 |
+| Scientific review  | Are assumptions, interpretations, and explanations physically sound? | Model specification review and documented checklist                         |
+| Release            | Is the built site stable, crawlable, and performant?                 | Production build, browser smoke tests, SEO/accessibility/performance review |
 
 ## 3. Test organization
 
@@ -48,6 +49,7 @@ docs/
 ```
 
 Guidelines:
+
 - Unit tests should be fast, deterministic, isolated, and independent of a browser.
 - Integration tests should verify contracts across solver, runtime, measurement, graph-data, and visualization adapters.
 - End-to-end tests should focus on critical learner journeys rather than reproduce every unit test in a browser.
@@ -100,6 +102,7 @@ For one-dimensional uniform motion with constant velocity:
 `v(t) = v_0`
 
 Required checks:
+
 - At (t=0), position equals (x_0) and velocity equals (v_0).
 - Positive velocity increases position along the positive axis.
 - Negative velocity decreases position along the positive axis.
@@ -118,6 +121,7 @@ For one-dimensional constant acceleration:
 `v(t) = v_0 + at`
 
 Required checks:
+
 - At (t=0), position and velocity equal their initial values.
 - Zero acceleration reduces to the GLB case.
 - Positive and negative acceleration change velocity with the expected sign.
@@ -142,6 +146,7 @@ Required checks:
 The runtime is responsible for simulation lifecycle and simulated time, not physical equations.
 
 Required unit/integration checks:
+
 - Initial state is established correctly.
 - Start begins progression exactly once.
 - Repeated start commands do not create duplicate loops.
@@ -163,6 +168,7 @@ The runtime must distinguish wall-clock time, render-frame time, and simulation 
 Measurement and graph data must derive from the same authoritative simulation samples.
 
 Required checks:
+
 - Every sample has an explicit simulation timestamp.
 - Values and labels carry the correct SI units.
 - Sampling order is monotonic in simulation time.
@@ -180,6 +186,7 @@ Required checks:
 Use deterministic snapshots/view models to test visualization adapters where practical.
 
 Check:
+
 - Coordinate mapping and scale conversion do not mutate physical state.
 - Positive and negative directions are represented consistently.
 - Resizing the viewport does not alter solver state or simulation time.
@@ -197,6 +204,7 @@ Do not rely exclusively on visual snapshot tests. A screenshot can look plausibl
 Playwright should cover a small set of high-value journeys.
 
 Initial GLB/GLBB journeys:
+
 1. Open the Indonesian linear-motion page directly by URL and verify the page content loads.
 2. Open the English equivalent and verify locale-specific title, explanatory content, and metadata.
 3. Set valid initial parameters and confirm displayed units and values.
@@ -234,6 +242,7 @@ A model should not be marked scientifically reviewed solely because automated te
 The supported browser matrix and minimum versions will be chosen in Phase 1/Phase 9 based on target audience and current browser support.
 
 At minimum, validate:
+
 - Current stable Chromium-based browser.
 - Current stable Firefox.
 - Current stable Safari/WebKit where supported by the target platform.
@@ -259,6 +268,7 @@ Automated accessibility tools are useful but do not replace keyboard and assisti
 ## 12. Failure severity and release blockers
 
 **Release-blocking**
+
 - Incorrect equations, solver results, unit conversions, or sign conventions.
 - Runtime advances incorrectly, duplicates loops, or fails to reset.
 - Displayed measurements or graphs disagree materially with the solver.
@@ -267,30 +277,33 @@ Automated accessibility tools are useful but do not replace keyboard and assisti
 - Production build or critical learner journey fails.
 
 **High priority**
+
 - Missing model assumptions, limitations, or scientific references.
 - Localization changes scientific meaning.
 - Significant mobile usability or performance regressions.
 
 **Non-blocking**
+
 - Minor visual inconsistencies that do not obscure meaning or prevent operation.
 - Non-critical layout polish issues with a documented follow-up.
 
 ## 13. Quality gate mapping
 
-| Change type | Required checks |
-|---|---|
-| Physics solver | Format, lint, type-check, solver unit tests, reference/analytical comparison |
-| Runtime | Format, lint, type-check, runtime unit tests, relevant integration tests |
-| Measurement/graph | Format, lint, type-check, unit and consistency integration tests |
-| Visualization/UI | Format, lint, type-check, relevant component/integration tests, accessibility checks |
-| Content/translation | Schema/content validation, link/reference review, scientific and language review |
-| Routing/SEO | Type-check, production build, route and metadata E2E/smoke checks |
-| Cross-cutting/release | All relevant gates, E2E, production build, browser smoke and release review |
-| Documentation-only | Link/path consistency, technical review, progress history; application tests not applicable |
+| Change type           | Required checks                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------- |
+| Physics solver        | Format, lint, type-check, solver unit tests, reference/analytical comparison                |
+| Runtime               | Format, lint, type-check, runtime unit tests, relevant integration tests                    |
+| Measurement/graph     | Format, lint, type-check, unit and consistency integration tests                            |
+| Visualization/UI      | Format, lint, type-check, relevant component/integration tests, accessibility checks        |
+| Content/translation   | Schema/content validation, link/reference review, scientific and language review            |
+| Routing/SEO           | Type-check, production build, route and metadata E2E/smoke checks                           |
+| Cross-cutting/release | All relevant gates, E2E, production build, browser smoke and release review                 |
+| Documentation-only    | Link/path consistency, technical review, progress history; application tests not applicable |
 
 ## 14. Phase 0.5 acceptance criteria
 
 Phase 0.5 can be marked VERIFIED when:
+
 - Test layers and directory organization are explicit.
 - Physics solver test categories and GLB/GLBB reference cases are defined.
 - Numerical tolerance policy is documented.

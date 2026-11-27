@@ -30,6 +30,7 @@ Working branch: `main`
 ## Phase roadmap
 
 ### Phase 0 — Engineering Preparation
+
 - 0.1 Inspect repository, default branch, and initial state
 - 0.2 Define application architecture and technical boundaries
   - Document Astro-first rendering and React island boundaries
@@ -75,6 +76,7 @@ Working branch: `main`
 Exit criteria: engineering decisions and workflow are documented; repository baseline is known; source, test, and documentation structures, coding standards, and quality gates are explicit and consistent with the architecture. Phase 0.6 additionally requires a repeatable preflight-to-handoff workflow, explicit validation evidence rules, defect/decision handling, and a reviewed committed workflow document.
 
 ### Phase 1 — Project Initialization
+
 - 1.1 Initialize Astro
   - Pin a supported Node.js runtime and document the local runtime requirement
   - Initialize the Astro project with a reproducible direct framework version
@@ -132,6 +134,7 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
 Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in the Vercel deployment. Phase 1.3 requires strict compiler settings, the Astro type-checking toolchain, and a clean `astro check` result evidenced by the Vercel deployment logs. Phase 1.4 requires the official Tailwind v4 Vite plugin, a working global stylesheet, Tailwind utilities rendered on both Astro and React content, responsive styling, and a successful Vercel deployment smoke test. Phase 1.5 requires ESLint flat config to cover the project's JavaScript, TypeScript, TSX, and Astro files; Prettier to format the source and sort Tailwind classes; working lint/format scripts; and clean Vercel lint, diagnostics, and production-build results. Phase 1.6 requires the pinned Vitest runner, a dedicated deterministic Node test configuration, one-shot/watch scripts, and a successful Vercel build that executes the runner. Empty-suite tolerance is temporary and must be removed when the first real domain unit tests are added.
 
 ### Phase 2 — Application Architecture
+
 - 2.1 Establish application layouts
 - 2.2 Establish route and page architecture
 - 2.3 Establish reusable component boundaries
@@ -144,6 +147,7 @@ Exit criteria: development server and production build work; linting and tests e
 Exit criteria: application structure supports content pages and interactive simulations without premature backend dependencies.
 
 ### Phase 3 — UI/UX Foundation
+
 - 3.1 Define brand tokens, colors, and typography
 - 3.2 Build responsive layout primitives
 - 3.3 Build navigation and site shell
@@ -156,6 +160,7 @@ Exit criteria: application structure supports content pages and interactive simu
 Exit criteria: core public-facing pages are navigable, responsive, and consistent.
 
 ### Phase 4 — Physics Domain Core
+
 - 4.1 Define physical constants and SI units
 - 4.2 Define typed quantities and parameter contracts
 - 4.3 Implement mathematical utilities
@@ -168,6 +173,7 @@ Exit criteria: core public-facing pages are navigable, responsive, and consisten
 Exit criteria: physics calculations are deterministic, independently testable, and separated from UI/rendering.
 
 ### Phase 5 — Simulation Runtime and Rendering
+
 - 5.1 Implement simulation lifecycle (start, pause, reset)
 - 5.2 Implement fixed-step update loop where appropriate
 - 5.3 Implement 2D coordinate and scale mapping
@@ -180,6 +186,7 @@ Exit criteria: physics calculations are deterministic, independently testable, a
 Exit criteria: a test model can be simulated and rendered reliably without coupling solver logic to rendering.
 
 ### Phase 6 — Measurement and Graphing
+
 - 6.1 Implement live measurement presentation
 - 6.2 Implement chart integration and shared data contracts
 - 6.3 Implement time-series data collection
@@ -190,6 +197,7 @@ Exit criteria: a test model can be simulated and rendered reliably without coupl
 Exit criteria: displayed values and graphs are derived from the same simulation state and use correct units.
 
 ### Phase 7 — First Simulation: Linear Motion
+
 - 7.1 Specify GLB scientific model and assumptions
 - 7.2 Implement and test GLB solver
 - 7.3 Specify GLBB scientific model and assumptions
@@ -204,6 +212,7 @@ Exit criteria: displayed values and graphs are derived from the same simulation 
 Exit criteria: GLB/GLBB experiments are usable, numerically validated, responsive, and covered by automated tests.
 
 ### Phase 8 — Learning Content and Localization
+
 - 8.1 Define reusable lesson content schema
 - 8.2 Author Indonesian lesson content
 - 8.3 Author English lesson content
@@ -215,6 +224,7 @@ Exit criteria: GLB/GLBB experiments are usable, numerically validated, responsiv
 Exit criteria: first simulation has complete, reviewed learning content in both languages.
 
 ### Phase 9 — Quality Assurance
+
 - 9.1 Review scientific correctness and model limitations
 - 9.2 Run unit and integration tests
 - 9.3 Run end-to-end tests
@@ -228,6 +238,7 @@ Exit criteria: first simulation has complete, reviewed learning content in both 
 Exit criteria: release criteria pass and known limitations are documented.
 
 ### Phase 10 — Production Deployment
+
 - 10.1 Prepare production configuration
 - 10.2 Configure Vercel project and environment
 - 10.3 Configure domain when available
@@ -239,6 +250,7 @@ Exit criteria: release criteria pass and known limitations are documented.
 Exit criteria: public deployment is verified and production checks pass.
 
 ### Phase 11 — Expansion and Optimization
+
 - 11.1 Use the validated pattern for Newton's Laws
 - 11.2 Expand remaining Mechanics topics
 - 11.3 Evaluate and prioritize other physics laboratories
@@ -250,6 +262,7 @@ Exit criteria: each expansion is justified by user value and follows the establi
 ## Delivery and completion policy
 
 Each subphase must have:
+
 - A clear objective and bounded scope
 - Files/modules affected
 - Acceptance criteria
@@ -259,6 +272,7 @@ Each subphase must have:
 - The commit SHA that contains the work
 
 Status definitions:
+
 - NOT STARTED
 - IN PROGRESS
 - BLOCKED

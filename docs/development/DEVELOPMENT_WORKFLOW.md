@@ -86,6 +86,7 @@ For application changes, run all relevant configured checks, normally:
 The exact commands are defined in the project package scripts during Phase 1. Do not invent command names before they exist.
 
 For documentation-only changes, review:
+
 - Markdown structure and internal links.
 - File paths and referenced names.
 - Consistency with architecture, roadmap, and decision records.
@@ -95,6 +96,7 @@ For documentation-only changes, review:
 For physics changes, additionally validate analytical/reference cases, units, assumptions, numerical tolerance, and scientific review requirements.
 
 For each check, record one of:
+
 - PASS — command/check ran and succeeded.
 - FAIL — command/check ran and failed; include useful failure evidence.
 - NOT RUN — not executed; state why.
@@ -115,6 +117,7 @@ Use focused imperative commit messages with a conventional prefix where suitable
 - `chore:` maintenance that does not fit another category.
 
 Examples:
+
 - `docs: define development workflow`
 - `feat: add uniform motion solver`
 - `test: verify uniform acceleration boundaries`

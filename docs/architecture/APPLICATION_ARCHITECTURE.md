@@ -9,6 +9,7 @@ Working branch: `main`
 ## 1. Architecture goals
 
 The application must:
+
 - Deliver fast, crawlable educational pages for Indonesian and English audiences.
 - Render most content on the server/build side through Astro.
 - Hydrate only interactive experiences that need browser interaction.
@@ -45,6 +46,7 @@ Astro Pages / Layouts
 ```
 
 Rules:
+
 - Physics Domain must not import Astro, React, DOM, Canvas, SVG, chart libraries, or browser APIs.
 - Simulation Runtime may call Physics Domain and publish serializable snapshots for the UI.
 - Visualization reads simulation snapshots; it must not calculate the scientific model.
@@ -53,18 +55,18 @@ Rules:
 
 ## 3. Technology responsibilities
 
-| Technology | Responsibility | Boundary |
-|---|---|---|
-| Astro | Public pages, layouts, routes, content rendering, SEO | Default page renderer |
-| React | Interactive controls and simulation islands | Hydrate only interactive areas |
-| TypeScript | Contracts across all application layers | Strict mode |
-| Tailwind CSS | Design tokens and responsive styling | No physics logic |
-| Canvas 2D | High-frequency 2D scene rendering when appropriate | Draws supplied state |
-| SVG | Diagrams, vectors, axes, and accessible graphics | Draws supplied state |
-| Three.js | Optional advanced 3D scenes | Only after a documented educational need |
-| Vitest | Pure model, runtime, and component-level tests | Run in CI when configured |
-| Playwright | Critical user journeys in a real browser | End-to-end validation |
-| Vercel | Hosting and deployment | No server functions required initially |
+| Technology   | Responsibility                                        | Boundary                                 |
+| ------------ | ----------------------------------------------------- | ---------------------------------------- |
+| Astro        | Public pages, layouts, routes, content rendering, SEO | Default page renderer                    |
+| React        | Interactive controls and simulation islands           | Hydrate only interactive areas           |
+| TypeScript   | Contracts across all application layers               | Strict mode                              |
+| Tailwind CSS | Design tokens and responsive styling                  | No physics logic                         |
+| Canvas 2D    | High-frequency 2D scene rendering when appropriate    | Draws supplied state                     |
+| SVG          | Diagrams, vectors, axes, and accessible graphics      | Draws supplied state                     |
+| Three.js     | Optional advanced 3D scenes                           | Only after a documented educational need |
+| Vitest       | Pure model, runtime, and component-level tests        | Run in CI when configured                |
+| Playwright   | Critical user journeys in a real browser              | End-to-end validation                    |
+| Vercel       | Hosting and deployment                                | No server functions required initially   |
 
 No charting library is selected yet. Phase 6 should evaluate whether native SVG or a small chart library best meets graph interaction, accessibility, and bundle-size requirements.
 
@@ -85,6 +87,7 @@ Public URL convention:
 - English: `/en/physics/mechanics/...`
 
 Initial route groups:
+
 - `/[locale]/` — localized homepage
 - `/[locale]/labs/` — laboratory directory
 - `/[locale]/labs/[labSlug]/` — laboratory overview
@@ -92,6 +95,7 @@ Initial route groups:
 - `/[locale]/articles/[articleSlug]/` — supporting article
 
 Rules:
+
 - Locale is explicit in the URL; do not rely only on browser language or cookies.
 - Indonesian and English pages are separately addressable and indexable.
 - Each localized page should provide canonical and reciprocal hreflang metadata when a translation exists.
@@ -105,6 +109,7 @@ Use Astro content collections or the current supported Astro content API for aut
 Content should be separated from React UI and physics solver code.
 
 A topic entry should be able to describe:
+
 - Stable topic identifier and slug
 - Locale
 - Title, summary, and learning objectives
@@ -120,6 +125,7 @@ Keep authored scientific explanations in content files. Keep executable solver i
 ## 7. Physics Domain Layer
 
 Suggested responsibilities:
+
 - Physical constants with source/precision notes where appropriate
 - Explicit units and unit conversion utilities
 - Mathematical helpers
@@ -133,17 +139,14 @@ Solver contract direction:
 ```ts
 type Solver<ModelState, Parameters> = {
   createInitialState(parameters: Parameters): ModelState;
-  step(
-    state: ModelState,
-    parameters: Parameters,
-    deltaTimeSeconds: number
-  ): ModelState;
+  step(state: ModelState, parameters: Parameters, deltaTimeSeconds: number): ModelState;
 };
 ```
 
 This is an architectural example, not a committed public API. Concrete contracts should be designed alongside the first physics model and tested for its actual needs.
 
 Rules:
+
 - Use SI units internally unless a model has a documented reason not to.
 - Encode units in names or domain types; do not pass ambiguous values such as an unlabelled `speed` between layers.
 - Validate finite values and allowed parameter ranges at model boundaries.
@@ -155,6 +158,7 @@ Rules:
 ## 8. Simulation Runtime Layer
 
 Responsibilities:
+
 - Start, pause, resume, and reset lifecycle
 - Fixed-step simulation clock / accumulator where appropriate
 - Speed multiplier and elapsed simulation time
@@ -164,6 +168,7 @@ Responsibilities:
 - Cleaning up animation frames and event listeners
 
 Runtime rules:
+
 - Browser animation scheduling must not determine the numerical integration step.
 - Use a fixed simulation step for deterministic stepping where appropriate; render frames may occur at variable refresh rates.
 - Handle tab visibility changes deliberately (pause or controlled catch-up; never silently advance a large unstable delta).
@@ -219,6 +224,7 @@ Create directories only when their first real module is introduced; the document
 ## 14. Architecture acceptance criteria
 
 Phase 0.2 is ready for verification when:
+
 - Layer responsibilities and dependency rules are documented.
 - Astro/React rendering and hydration boundaries are documented.
 - Locale and public route conventions are documented.

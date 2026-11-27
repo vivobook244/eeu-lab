@@ -37,6 +37,7 @@ The exact tool versions and configuration files will be selected during Phase 1.
 ## 4. Naming and module conventions
 
 Follow the naming rules in [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md):
+
 - Astro and React components use PascalCase.
 - Domain, runtime, utility, and test module filenames use kebab-case.
 - Types and interfaces use descriptive PascalCase.
@@ -46,6 +47,7 @@ Follow the naming rules in [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md):
 - Avoid abbreviations unless they are standard in physics or the project glossary.
 
 Module rules:
+
 - One module should have one clear responsibility.
 - Keep public exports small and intentional.
 - Avoid circular imports and broad barrel files by default.
@@ -104,6 +106,7 @@ Scientific correctness takes precedence over convenience or visual smoothness.
 The project uses Prettier for formatting and ESLint for static code-quality rules. Configuration lives in `.prettierrc.json` and `eslint.config.mjs`; exact package versions and scripts are pinned in `package.json`.
 
 Required policy:
+
 - Formatting must be automated; do not debate formatting in code review.
 - Lint must report no errors.
 - Suppressions must be narrow, justified, and explained. Do not disable a rule globally to bypass a local issue.
@@ -117,6 +120,7 @@ Required policy:
 ## 9. Documentation requirements
 
 Every physics model specification must document:
+
 - Model name and intended learning objective.
 - Governing equations and symbol definitions.
 - SI units and conversion behavior.
@@ -170,6 +174,7 @@ Do not claim a gate passed unless its command actually ran and returned success.
 ## 13. Quality gate acceptance checklist
 
 Before a code change is considered complete:
+
 - [ ] Scope and affected architecture layers are understood.
 - [ ] Inputs and boundary conditions are validated.
 - [ ] No forbidden cross-layer dependency was introduced.
@@ -185,6 +190,7 @@ Before a code change is considered complete:
 ## 14. Deferred implementation details
 
 The following remain deferred until their corresponding implementation phases:
+
 - TypeScript compiler options beyond the strict requirement, when new source requirements justify changes.
 - CI workflow provider and configuration; Vercel is the current deployment validation environment.
 - Exact component-testing tooling and browser matrix.
@@ -192,6 +198,7 @@ The following remain deferred until their corresponding implementation phases:
 ## 15. Phase 0.4 acceptance criteria
 
 Phase 0.4 can be marked VERIFIED when:
+
 - TypeScript safety rules are explicit.
 - Naming, module, and dependency conventions are documented or linked.
 - Physics-specific numerical and scientific rules are explicit.
