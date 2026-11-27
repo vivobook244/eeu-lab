@@ -8,7 +8,7 @@ export default tseslint.config(
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  ...astro.configs["flat/recommended"],
+  ...astro.configs.recommended,
   {
     files: ["**/*.{js,mjs,cjs,ts,tsx}"],
     rules: {
