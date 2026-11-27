@@ -7,12 +7,12 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-27
 - Active branch: `main`
 - Current phase: Phase 1 — Project Initialization
-- Current subphase: 1.6 — Configure Vitest (verified; awaiting completion of adjacent setup checks)
+- Current subphase: 1.5 — Configure ESLint and Prettier (implementation updated; awaiting Vercel validation)
 - Overall status: IN PROGRESS
 - Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of the Vercel deployment)
 - Latest phase artifact commit: `a696c09e9f9c1f94eba192bfe1e77d6862e5bf42`
 - Latest documentation commit before this progress update: `a696c09e9f9c1f94eba192bfe1e77d6862e5bf42`
-- Next planned work: Complete the pending browser smoke test and Prettier check; resolve the TypeScript ESLint-config deprecation hint before Phase 1.7
+- Next planned work: Validate Phase 1.5 through Vercel; then configure Playwright in Phase 1.7. Phase 1.1 still requires a committed npm lockfile.
 
 ## Status definitions
 
@@ -37,7 +37,7 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 1.2 | Integrate React | VERIFIED | Official integration and hydrated React island deployed; user confirmed the interactive counter works in the Vercel deployment on 2026-11-26. |
 | 1.3 | Configure strict TypeScript | VERIFIED | Vercel build on 2026-11-27: `astro check` reported 0 errors, 0 warnings, 0 hints; Astro static production build and deployment completed successfully. |
 | 1.4 | Integrate Tailwind CSS | VERIFIED | Vercel production build passed; project owner confirmed the landing page renders normally on desktop and mobile, and the React counter interaction had previously been confirmed working. |
-| 1.5 | Configure ESLint and Prettier | IMPLEMENTED | ESLint passed in Vercel build on 2026-11-27; Prettier `format:check` has not yet been run. `astro check` emitted one deprecation hint from `tseslint.config()`. |
+| 1.5 | Configure ESLint and Prettier | IMPLEMENTED | Replaced deprecated `tseslint.config()` helper with native flat-config array and added `format:check` to the production build gate. Awaiting Vercel validation of clean diagnostics, lint, formatting, tests, and build. |
 | 1.6 | Configure Vitest | VERIFIED | Vercel build on 2026-11-27 installed dependencies, ran Vitest 5.1.2 successfully, and completed Astro production build/deployment. Runner reported no test files; temporary `passWithNoTests` allows this until Phase 4 adds real physics tests. |
 | 1.7–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
@@ -849,3 +849,44 @@ Resolve the deprecated TypeScript ESLint config helper, run the Prettier check i
 
 **Next**
 Complete Phase 1.5's Prettier check and remove the deprecated TypeScript ESLint configuration helper before proceeding to Phase 1.7 — Playwright.
+
+
+### 2026-11-27 — Phase 1.5 ESLint and Prettier cleanup implemented
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.5 — Configure ESLint and Prettier  
+**Status:** IMPLEMENTED
+
+**Preflight inspection**
+- Confirmed repository: `vivobook244/eeu-lab`.
+- Confirmed the only branch is `main`.
+- Confirmed pre-implementation HEAD: `1165657deef1fba94c808e72563ec050d18a3327`.
+- Re-read the existing ESLint configuration, package scripts, Prettier configuration, ignore rules, roadmap, and progress history.
+- No additional branch was created.
+
+**Work completed**
+- Replaced the deprecated `tseslint.config()` helper with a native ESLint flat-config array.
+- Preserved the existing JavaScript, TypeScript, TSX, and Astro recommended configurations and project-specific rules.
+- Added `npm run format:check` to the production build quality gate between lint and Vitest.
+- Kept the existing Prettier configuration and ignore rules unchanged.
+
+**Artifacts updated**
+- `eslint.config.mjs`
+- `package.json`
+- `docs/DEVELOPMENT_PROGRESS.md`
+
+**Implementation commits**
+- `7d70fde4513dd544b957255ad10433fb583c6e11` — `build: remove deprecated ESLint config helper`
+- `a4af9665084f6543a640f6998be98841150599de` — `build: enforce Prettier formatting check`
+
+**Validation**
+- GitHub read-back of the updated files is pending.
+- Vercel validation is pending; therefore the Prettier check and absence of the previous TypeScript deprecation hint are not yet claimed as passing.
+- The build gate now executes, in order: Astro diagnostics, ESLint, Prettier check, Vitest, and Astro production build.
+
+**Limitations**
+- Phase 1.5 remains IMPLEMENTED until Vercel confirms all gates pass.
+- The committed npm lockfile remains outstanding under Phase 1.1.
+
+**Next**
+Deploy the latest `main` commit and inspect the Vercel build output. If formatting fails, correct the reported files before marking Phase 1.5 VERIFIED. Then proceed to Phase 1.7 — Playwright.
