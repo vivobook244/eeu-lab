@@ -101,13 +101,20 @@ Exit criteria: engineering decisions and workflow are documented; repository bas
   - Ensure path aliases remain valid without relying on deprecated configuration
   - Run type and Astro diagnostics in the Vercel build pipeline; do not mark verified until deployment logs show a clean check
 - 1.4 Integrate Tailwind CSS
+  - Pin exact Tailwind CSS v4 and official Vite plugin versions
+  - Register the official Tailwind Vite plugin without replacing the Astro React integration
+  - Add the global stylesheet with Tailwind import and minimal project-wide base styles
+  - Import global styles from the Astro page/layout entry point
+  - Replace the temporary landing page's inline component styling with responsive Tailwind utilities
+  - Style the React island with Tailwind utilities and retain accessible interaction states
+  - Verify responsive rendering, generated styles, React hydration, and production build in Vercel
 - 1.5 Configure ESLint and Prettier
 - 1.6 Configure Vitest
 - 1.7 Configure Playwright
 - 1.8 Configure package scripts and environment handling
 - 1.9 Configure Vercel deployment
 
-Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in the Vercel deployment. Phase 1.3 requires strict compiler settings, the Astro type-checking toolchain, and a clean `astro check` result evidenced by the Vercel deployment logs.
+Exit criteria: development server and production build work; linting and tests execute; deployment configuration is verified. Phase 1.1 specifically requires the Astro scaffold and its configuration to be committed, dependencies installed in Vercel, a successful production build, and a committed lockfile. Local development-server testing is optional when Vercel Preview is the agreed validation environment. Phase 1.2 requires a working hydrated React island verified in the Vercel deployment. Phase 1.3 requires strict compiler settings, the Astro type-checking toolchain, and a clean `astro check` result evidenced by the Vercel deployment logs. Phase 1.4 requires the official Tailwind v4 Vite plugin, a working global stylesheet, Tailwind utilities rendered on both Astro and React content, responsive styling, and a successful Vercel deployment smoke test.
 
 ### Phase 2 — Application Architecture
 - 2.1 Establish application layouts
