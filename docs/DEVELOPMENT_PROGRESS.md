@@ -7,12 +7,12 @@ This file is append-only in practice: add new dated entries and preserve earlier
 - Last updated: 2026-11-27
 - Active branch: `main`
 - Current phase: Phase 1 — Project Initialization
-- Current subphase: 1.5 — Configure ESLint and Prettier
+- Current subphase: 1.6 — Configure Vitest
 - Overall status: IN PROGRESS
 - Phase 1.1 status: IMPLEMENTED (Vercel dependency installation and production build PASS; committed lockfile pending; local dev-server test waived in favor of the Vercel deployment)
-- Latest phase artifact commit: `0e85732106bdf1660f7b482143c557fd902133c0`
-- Latest documentation commit before this progress update: `3d9377c65479cbcd9ca1e7778b37b5db4a9d0f3d`
-- Next planned work: Deploy the latest `main` commit and verify Phase 1.4 and Phase 1.5 through Vercel
+- Latest phase artifact commit: `3533387c9d7c893dcd635f276930a7b5ee0d9004`
+- Latest documentation commit before this progress update: `268d411b9918e6c05af53c5df86cab2595c8253e`
+- Next planned work: Deploy the latest `main` commit and verify Phase 1.4, 1.5, and 1.6 through Vercel
 
 ## Status definitions
 
@@ -38,7 +38,8 @@ This file is append-only in practice: add new dated entries and preserve earlier
 | 1.3 | Configure strict TypeScript | VERIFIED | Vercel build on 2026-11-27: `astro check` reported 0 errors, 0 warnings, 0 hints; Astro static production build and deployment completed successfully. |
 | 1.4 | Integrate Tailwind CSS | IMPLEMENTED | Tailwind CSS 4.3.5 and official Vite plugin configured; global stylesheet and responsive Astro/React utility styling added. Vercel verification pending. |
 | 1.5 | Configure ESLint and Prettier | IMPLEMENTED | ESLint flat config, TypeScript/Astro support, Prettier Astro/Tailwind plugins, scripts, and build lint gate added. Vercel validation pending. |
-| 1.6–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
+| 1.6 | Configure Vitest | IMPLEMENTED | Vitest 5.1.2, Node-based test config, one-shot/watch scripts, mock cleanup, and build test gate added. Vercel validation pending; no physics tests exist yet. |
+| 1.7–1.9 | Remaining Phase 1 setup | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 | 2.0–11.0 | Remaining development phases | NOT STARTED | See DEVELOPMENT_ROADMAP.md. |
 
 ---
@@ -719,4 +720,74 @@ Add consistent static analysis and formatting for Astro, TypeScript, React TSX, 
 
 **Next**
 Deploy the latest `main` commit to Vercel. Review dependency installation, `astro check`, ESLint, and Astro production build logs. Run `npm run format:check` in a compatible environment, then verify the responsive landing page and React interaction before marking Phase 1.4 and 1.5 VERIFIED.
+
+### 2026-11-27 — Phase 1.6 Vitest configured
+
+**Phase:** 1 — Project Initialization  
+**Subphase:** 1.6 — Configure Vitest  
+**Status:** IMPLEMENTED
+
+**Objective**  
+Establish a repeatable, deterministic unit-test runner for future physics and simulation modules, without coupling pure model tests to browser APIs or React rendering.
+
+**Preflight inspection**
+- Confirmed repository: `vivobook244/eeu-lab`.
+- Confirmed the only working branch is `main`; no additional branch was created.
+- Confirmed latest pre-implementation commit: `4ead3354de84b6e0e52e6a96ce3b6f4f29a84526`.
+- Re-read package manifest, TypeScript configuration, Astro configuration, development roadmap/progress, project structure, and testing strategy.
+- Confirmed the project currently has no physics source modules or unit-test files; those are planned for later phases.
+
+**Version and compatibility review**
+- Selected exact Vitest version `5.1.2`, latest stable release found on 2026-11-27.
+- Vitest 5 requires Node.js `>=22.12.0` and Vite `>=6.4.0`; the project pins Node `22.23.4`.
+- Astro `7.4.13` declares Vite `^8.3.6` in its package metadata, which satisfies Vitest's Vite minimum.
+- No direct Vite dependency was added; Astro already owns the Vite toolchain and npm resolves Vitest's compatible Vite peer dependency.
+- A separate Vitest config is used so unit tests do not need Astro/Tailwind browser or application plugins.
+
+**Implementation**
+- Added exact development dependency `vitest 5.1.2`.
+- Added root `vitest.config.ts` with:
+  - Node test environment.
+  - Explicit `tests/**/*.test.ts` and `tests/**/*.test.tsx` discovery.
+  - Mock call-history clearing, spy restoration, and global stub cleanup.
+  - Temporary `passWithNoTests` for the tooling bootstrap only.
+- Added `test`, `test:run`, and `test:watch` scripts.
+- Added `npm run test:run` to the production build quality gate after Astro diagnostics and ESLint.
+- Added `.vitest/` to `.gitignore`.
+- Updated roadmap acceptance criteria, README test commands, and testing strategy.
+- No fake or placeholder physics test was added. The first real solver tests belong with Phase 4 domain implementation.
+
+**Files created or updated**
+- `package.json`
+- `vitest.config.ts` (new)
+- `.gitignore`
+- `README.md`
+- `docs/DEVELOPMENT_ROADMAP.md`
+- `docs/testing/TESTING_STRATEGY.md`
+- `docs/DEVELOPMENT_PROGRESS.md`
+
+**Commits**
+- `3533387c9d7c893dcd635f276930a7b5ee0d9004` — `build: add Vitest test runner dependency and scripts`
+- `f3abe038af2f9927ec5b7af39fd4a25250cb734a` — `test: configure deterministic Vitest unit test environment`
+- `d605d9c2523b91b8f724ff91c44bea14d2b83bda` — `chore: ignore Vitest generated artifacts`
+- `c05c8dbea14fe09e113f81d7d52894b877babd6e` — `docs: define Vitest configuration acceptance criteria`
+- `a31ca1f001f00ff8d4213eb10e11db29ae180fa5` — `docs: document Vitest test commands`
+- `268d411b9918e6c05af53c5df86cab2595c8253e` — `docs: document Vitest runner conventions`
+
+**Validation**
+- Reviewed current Vitest release, official configuration guidance, and migration prerequisites.
+- Confirmed Node requirement against the repository's pinned runtime.
+- Confirmed Astro's declared Vite dependency satisfies Vitest's minimum Vite version.
+- GitHub commits succeeded on `main`.
+- Vercel dependency installation, `astro check`, ESLint, Vitest execution, and production build: NOT RUN after this change.
+- Phase remains IMPLEMENTED until the Vercel build proves the new dependency resolves and the runner executes successfully.
+
+**Known limitations / follow-up**
+- No physics/model tests exist yet; this phase configures the runner only. The temporary empty-suite allowance must be removed when Phase 4 introduces the first real domain tests.
+- Phase 1.1 remains IMPLEMENTED because `package-lock.json` is still not committed.
+- Phase 1.4 and 1.5 remain IMPLEMENTED pending Vercel and browser validation.
+- Phase 1.5's Prettier check is a separate validation command and is not yet part of the production build gate.
+
+**Next**
+Deploy the latest `main` commit to Vercel. Confirm dependency installation, `astro check`, ESLint, Vitest runner startup, and Astro production build. After verification, continue Phase 1.7 — Configure Playwright.
 
