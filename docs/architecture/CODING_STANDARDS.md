@@ -25,7 +25,16 @@ The exact tool versions and configuration files will be selected during Phase 1.
 - Keep types close to the module that owns their meaning. Do not create a global type dumping ground.
 - Do not introduce branded unit types or generic type frameworks until a demonstrated bug-prevention need justifies them.
 
-## 3. Naming and module conventions
+## 3. Styling and presentation rules
+
+- Use Tailwind CSS v4 utilities for shared layout, spacing, typography, color, responsive behavior, and interaction states.
+- Keep global CSS limited to Tailwind imports, design tokens, browser-wide defaults, and styles that cannot be expressed clearly with utilities.
+- Do not reintroduce large page-specific style blocks when a small set of utilities is sufficient.
+- Keep visual presentation separate from physics calculations and simulation state transitions.
+- Use semantic HTML and visible keyboard focus states; responsive behavior must not rely on hover alone.
+- Prefer the light visual theme established for the initial product experience; do not introduce a dark theme without a documented product decision.
+
+## 4. Naming and module conventions
 
 Follow the naming rules in [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md):
 - Astro and React components use PascalCase.
@@ -43,7 +52,7 @@ Module rules:
 - Do not create abstractions for a single trivial use unless they clarify an important boundary.
 - Prefer composition and plain functions over inheritance-heavy designs.
 
-## 4. Physics and numerical-computing rules
+## 5. Physics and numerical-computing rules
 
 Scientific correctness takes precedence over convenience or visual smoothness.
 
@@ -62,7 +71,7 @@ Scientific correctness takes precedence over convenience or visual smoothness.
 - Do not round internal solver values for display convenience. Round only at presentation boundaries.
 - Do not put scientific calculations in React components, Canvas draw functions, chart formatters, or content files.
 
-## 5. Input validation and error handling
+## 6. Input validation and error handling
 
 - Treat browser input, URL parameters, content frontmatter, and imported data as untrusted until validated.
 - Validate once at a clear boundary and pass typed, validated values inward.
