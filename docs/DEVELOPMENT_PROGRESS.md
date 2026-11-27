@@ -880,7 +880,7 @@ Complete Phase 1.5's Prettier check and remove the deprecated TypeScript ESLint 
 - `a4af9665084f6543a640f6998be98841150599de` — `build: enforce Prettier formatting check`
 
 **Validation**
-- GitHub read-back of the updated files is pending.
+- GitHub read-back of `eslint.config.mjs`, `package.json`, and this progress entry: PASS.
 - Vercel validation is pending; therefore the Prettier check and absence of the previous TypeScript deprecation hint are not yet claimed as passing.
 - The build gate now executes, in order: Astro diagnostics, ESLint, Prettier check, Vitest, and Astro production build.
 
