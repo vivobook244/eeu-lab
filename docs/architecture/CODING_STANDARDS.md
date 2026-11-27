@@ -84,7 +84,7 @@ Scientific correctness takes precedence over convenience or visual smoothness.
 - Cleanup animation frames, event listeners, observers, and rendering resources reliably.
 - Keep static lesson content usable if an interactive experiment fails to initialize.
 
-## 6. React and Astro conventions
+## 7. React and Astro conventions
 
 - Astro owns public route composition, static content, metadata, and page-level structure.
 - React is reserved for interactive islands and controls that need client-side behavior.
@@ -99,7 +99,7 @@ Scientific correctness takes precedence over convenience or visual smoothness.
 - Ensure subscriptions and runtime connections are cleaned up when components unmount.
 - Keep browser-only APIs out of Astro server-rendered execution paths.
 
-## 7. Formatting, linting, and code clarity
+## 8. Formatting, linting, and code clarity
 
 The project will use Prettier for formatting and ESLint for static code-quality rules, configured during Phase 1.
 
@@ -114,7 +114,7 @@ Required policy:
 - Keep functions small enough to understand, but do not split code mechanically into excessive micro-functions.
 - Prefer readable code over clever compact expressions.
 
-## 8. Documentation requirements
+## 9. Documentation requirements
 
 Every physics model specification must document:
 - Model name and intended learning objective.
@@ -130,7 +130,7 @@ Code comments should be added when they preserve important scientific or impleme
 
 Architecture or API changes that alter layer boundaries must update the relevant architecture/decision documentation and the progress history.
 
-## 9. Dependency policy
+## 10. Dependency policy
 
 - Add a dependency only when it solves a concrete requirement better than a small native implementation.
 - Prefer established, maintained packages with suitable licensing, security posture, and browser support.
@@ -140,7 +140,7 @@ Architecture or API changes that alter layer boundaries must update the relevant
 - Record significant dependencies and architectural consequences in the decision log.
 - Exact package versions and dependency review process are finalized in Phase 1.
 
-## 10. Required quality gates
+## 11. Required quality gates
 
 The following checks define the intended validation sequence. Exact package scripts are established during Phase 1.
 
@@ -156,7 +156,7 @@ A change must run all relevant gates. Documentation-only changes do not require 
 
 Do not claim a gate passed unless its command actually ran and returned success. If a gate cannot run, record it as NOT RUN with the reason.
 
-## 11. Change and commit policy
+## 12. Change and commit policy
 
 - Work only on `main`; do not create another branch unless the project owner changes the rule.
 - Inspect branch, latest commit, and working tree/repository state before work.
@@ -167,7 +167,7 @@ Do not claim a gate passed unless its command actually ran and returned success.
 - Preserve prior history; append dated records.
 - Never hide a failing test by deleting or weakening it without a documented reason and replacement coverage.
 
-## 12. Quality gate acceptance checklist
+## 13. Quality gate acceptance checklist
 
 Before a code change is considered complete:
 - [ ] Scope and affected architecture layers are understood.
@@ -182,7 +182,7 @@ Before a code change is considered complete:
 - [ ] Scientific assumptions, units, and limitations are documented where applicable.
 - [ ] Progress history and decision records are updated when required.
 
-## 13. Deferred implementation details
+## 14. Deferred implementation details
 
 The following will be configured in Phase 1 rather than guessed here:
 - Exact ESLint flat-config rules and plugins.
@@ -192,7 +192,7 @@ The following will be configured in Phase 1 rather than guessed here:
 - CI workflow provider and configuration.
 - Exact component-testing tooling and browser matrix.
 
-## 14. Phase 0.4 acceptance criteria
+## 15. Phase 0.4 acceptance criteria
 
 Phase 0.4 can be marked VERIFIED when:
 - TypeScript safety rules are explicit.
