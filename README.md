@@ -10,6 +10,7 @@ EEU LAB is an interactive physics laboratory focused on helping learners explore
 - TypeScript (strict baseline)
 - React islands (added in Phase 1.2)
 - Tailwind CSS (added in Phase 1.4)
+- ESLint and Prettier (added in Phase 1.5)
 
 ## Requirements
 
@@ -36,7 +37,21 @@ Start the development server:
 npm run dev
 ```
 
-Build for production:
+Run static analysis:
+
+```bash
+npm run check
+npm run lint
+```
+
+Check formatting or apply formatting:
+
+```bash
+npm run format:check
+npm run format
+```
+
+Build for production (includes type diagnostics and lint):
 
 ```bash
 npm run build
