@@ -11,6 +11,7 @@ EEU LAB is an interactive physics laboratory focused on helping learners explore
 - React islands (added in Phase 1.2)
 - Tailwind CSS (added in Phase 1.4)
 - ESLint and Prettier (added in Phase 1.5)
+- Vitest (added in Phase 1.6)
 
 ## Requirements
 
@@ -42,6 +43,13 @@ Run static analysis:
 ```bash
 npm run check
 npm run lint
+```
+
+Run unit tests once or in watch mode:
+
+```bash
+npm run test:run
+npm run test:watch
 ```
 
 Check formatting or apply formatting:
